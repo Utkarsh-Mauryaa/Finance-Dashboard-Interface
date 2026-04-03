@@ -26,11 +26,11 @@ const Sidebar = ({ onClose }) => {
 
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32, paddingLeft: 8 }}>
                 <div style={{ width: 34, height: 34, borderRadius: 10, background: "linear-gradient(135deg, #63dcbe, #e05c7a)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ color: "#0d0f14", fontWeight: 800, fontSize: 15, fontFamily: "'Syne',sans-serif" }}>H</span>
+                    <img src="./public/ZorvynLogo.jpg" alt="Z" />
                 </div>
                 <div>
-                    <p style={{ color: "#e8eaf0", fontWeight: 700, fontSize: 16, margin: 0, fontFamily: "'Syne',sans-serif" }}>Fin-Tech</p>
-                    <p style={{ color: "#5a607a", fontSize: 10, margin: 0, fontFamily: "'DM Mono',monospace", textTransform: "uppercase", letterSpacing: "0.08em" }}>Admin</p>
+                    <p style={{ color: "#e8eaf0", fontWeight: 700, fontSize: 16, margin: 0, fontFamily: "'Syne',sans-serif" }}>Zorvyn</p>
+                    <p style={{ color: "#5a607a", fontSize: 10, margin: 0, fontFamily: "'DM Mono',monospace",letterSpacing: "0.08em" }}>A Fintech Company</p>
                 </div>
             </div>
 

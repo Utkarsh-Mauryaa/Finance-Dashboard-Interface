@@ -8,6 +8,23 @@ import AddTransactionDialog from "../components/specific/AddTransactionDialog";
 import { motion } from "framer-motion";
 import { MdAdd } from "react-icons/md";
 
+const STORAGE_KEY = "fin_transactions";
+
+// Read from localStorage, fall back to sampleData if nothing stored yet
+const loadRows = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : TRANSACTIONS;
+  } catch {
+    return TRANSACTIONS;
+  }
+};
+
+// Write to localStorage
+const saveRows = (rows) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(rows));
+};
+
 const Transactions = () => {
   const [isLoading, setIsLoading]   = useState(true);
   const [rows, setRows]             = useState([]);
@@ -15,11 +32,51 @@ const Transactions = () => {
 
   const isAdmin = useSelector((state) => state.adminCheck.isAdmin);
 
+  // On mount: load from localStorage (or sampleData as seed)
+  useEffect(() => {
+    setTimeout(() => {
+      setRows(loadRows());
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  // Every time rows changes, persist to localStorage
+  useEffect(() => {
+    if (!isLoading) saveRows(rows);
+  }, [rows, isLoading]);
+
+  // Called when admin edits a cell inline in the DataGrid
+  const handleRowUpdate = (updatedRow) => {
+    setRows((prev) =>
+      prev.map((r) => (r.id === updatedRow.id ? updatedRow : r))
+    );
+    return updatedRow; // required by DataGrid's processRowUpdate contract
+  };
+
+  // Called when AddTransactionDialog submits
+  const handleAdd = (newTransaction) => {
+    setRows((prev) => [newTransaction, ...prev]);
+  };
+
   const columns = [
-    { field: "id",       headerName: "ID",       width: 200, headerClassName: "table-header" },
-    { field: "date",     headerName: "Date",     width: 200, headerClassName: "table-header" },
     {
-      field: "amount", headerName: "Amount", width: 150, headerClassName: "table-header", editable: isAdmin,
+      field: "id",
+      headerName: "ID",
+      width: 200,
+      headerClassName: "table-header",
+    },
+    {
+      field: "date",
+      headerName: "Date",
+      width: 200,
+      headerClassName: "table-header",
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      width: 150,
+      headerClassName: "table-header",
+      editable: isAdmin,
       renderCell: (params) => (
         <span style={{ color: "#e8eaf0", fontFamily: "'Syne',sans-serif", fontWeight: 600 }}>
           {params.row.amount}
@@ -27,7 +84,11 @@ const Transactions = () => {
       ),
     },
     {
-      field: "category", headerName: "Category", width: 200, headerClassName: "table-header", editable: isAdmin,
+      field: "category",
+      headerName: "Category",
+      width: 200,
+      headerClassName: "table-header",
+      editable: isAdmin,
       renderCell: (params) => (
         <span style={{ color: "#e8eaf0", fontFamily: "'Syne',sans-serif", fontWeight: 600 }}>
           {params.row.category}
@@ -35,7 +96,11 @@ const Transactions = () => {
       ),
     },
     {
-      field: "type", headerName: "Type", width: 200, headerClassName: "table-header", editable: isAdmin,
+      field: "type",
+      headerName: "Type",
+      width: 200,
+      headerClassName: "table-header",
+      editable: isAdmin,
       renderCell: (params) => (
         <span style={{
           color: params.row.type === "Income" ? "#63dcbe" : "#e05c7a",
@@ -48,24 +113,12 @@ const Transactions = () => {
     },
   ];
 
-  useEffect(() => {
-    setTimeout(() => {
-      setRows(TRANSACTIONS);
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
-  const handleAdd = (newTransaction) => {
-    setRows((prev) => [newTransaction, ...prev]);
-  };
-
   return (
     <Layout>
       {isLoading ? (
         <LayoutLoaderAdmin />
       ) : (
         <>
-          {/* Add button — only visible to admin */}
           {isAdmin && (
             <motion.div
               initial={{ opacity: 0, y: -8 }}
@@ -98,9 +151,13 @@ const Transactions = () => {
             </motion.div>
           )}
 
-          <Table heading="All Transactions" columns={columns} rows={rows} />
+          <Table
+            heading="All Transactions"
+            columns={columns}
+            rows={rows}
+            processRowUpdate={handleRowUpdate}   // passes edit handler into DataGrid
+          />
 
-          {/* Dialog */}
           <AddTransactionDialog
             open={dialogOpen}
             onClose={() => setDialogOpen(false)}

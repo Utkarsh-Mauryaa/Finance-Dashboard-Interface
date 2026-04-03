@@ -10,6 +10,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { IoClose } from "react-icons/io5";
+import { v4 as uuidv4 } from "uuid";
 
 
 const CATEGORIES = [
@@ -73,7 +74,7 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
     if (Object.keys(e).length) { setErrors(e); return; }
 
     onAdd({
-      id:       Math.random().toString(36).slice(2, 9),
+      id:       uuidv4().split("-")[0],
       date:     form.date,
       amount:   Number(form.amount),
       category: form.category,

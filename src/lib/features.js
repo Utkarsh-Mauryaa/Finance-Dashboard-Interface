@@ -16,12 +16,12 @@ export const getLast6Months = () => {
   return last6Months;
 };
 
-export const modifiedTransactions = (transactions=[]) => {
-  return transactions.map((transaction, index) => {
-    return {
-      id: index + 1,
-      date: 
-    }
-  })
+// export const modifiedTransactions = (transactions=[]) => {
+//   return transactions.map((transaction, index) => {
+//     return {
+//       id: index + 1,
+//       date: 
+//     }
+//   })
 
-}
+// }
