@@ -28,10 +28,10 @@ const Sidebar = ({ onClose }) => {
           <img src="./public/ZorvynLogo.jpg" alt="Z" className="w-full h-full object-cover" />
         </div>
         <div>
-          <p className="text-light-text dark:text-dark-text font-['Syne'] font-bold text-base m-0 leading-tight">
+          <p className="text-light-text dark:text-dark-text font-['Roboto'] font-bold text-[17px] m-0 leading-tight">
             Zorvyn
           </p>
-          <p className="text-light-subtle dark:text-dark-subtle font-['DM_Mono'] text-[10px] m-0 tracking-[0.08em]">
+          <p className="text-light-subtle dark:text-dark-subtle font-['Roboto_Mono'] text-[11px] m-0 tracking-[0.08em]">
             A Fintech Company
           </p>
         </div>
@@ -48,7 +48,7 @@ const Sidebar = ({ onClose }) => {
                 onClick={onClose}
                 className={`
                   flex items-center gap-3 px-3.5 py-2.5 rounded-xl
-                  no-underline text-sm font-['Syne'] transition-all duration-150
+                  no-underline text-[15px] font-['Roboto'] transition-all duration-150
                   ${isActive
                     ? "bg-accent-green/10 text-accent-green border border-accent-green/20 font-bold"
                     : "bg-transparent text-light-muted dark:text-dark-muted border border-transparent hover:bg-light-hover dark:hover:bg-dark-hover hover:text-light-text dark:hover:text-dark-text font-medium"
@@ -69,7 +69,7 @@ const Sidebar = ({ onClose }) => {
         className="
           flex items-center gap-3 px-3.5 py-2.5 rounded-xl w-full
           border border-accent-pink/15 bg-transparent
-          text-accent-pink font-['Syne'] font-semibold text-sm
+          text-accent-pink font-['Roboto'] font-semibold text-[15px]
           cursor-pointer transition-colors duration-200
           hover:bg-accent-pink/8
         "

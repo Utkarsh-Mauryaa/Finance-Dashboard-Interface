@@ -28,8 +28,8 @@ const tooltipBase = {
   borderWidth: 1,
   titleColor: "#e8eaf0",
   bodyColor: "#8890a8",
-  titleFont: { family: "Syne", weight: "700" },
-  bodyFont: { family: "DM Mono" },
+  titleFont: { family: "Roboto", weight: "700" },
+  bodyFont: { family: "Roboto Mono" },
   padding: 10,
   cornerRadius: 8,
 };
@@ -56,7 +56,7 @@ const lineChartOptions = {
     x: {
       grid: { display: false },
       border: { color: "#1e2330" },
-      ticks: { color: "#5a607a", font: { family: "DM Mono", size: 11 } },
+      ticks: { color: "#5a607a", font: { family: "Roboto Mono", size: 12 } },
     },
     y: {
       grid: { color: "rgba(255,255,255,0.04)", drawBorder: false },
@@ -64,7 +64,7 @@ const lineChartOptions = {
       min: 0, max: 100000,
       ticks: {
         color: "#5a607a",
-        font: { family: "DM Mono", size: 11 },
+        font: { family: "Roboto Mono", size: 12 },
         stepSize: 25000,
         callback: (v) => {
           if (v === 0) return "₹0";
@@ -159,14 +159,14 @@ const barChartOptions = {
     x: {
       grid: { display: false },
       border: { color: "#1e2330" },
-      ticks: { color: "#5a607a", font: { family: "DM Mono", size: 11 } },
+      ticks: { color: "#5a607a", font: { family: "Roboto Mono", size: 12 } },
     },
     y: {
       grid: { color: "rgba(255,255,255,0.04)" },
       border: { display: false },
       ticks: {
         color: "#5a607a",
-        font: { family: "DM Mono", size: 11 },
+        font: { family: "Roboto Mono", size: 12 },
         callback: (v) => v >= 1000 ? (v / 1000).toFixed(0) + "k" : v,
       },
     },

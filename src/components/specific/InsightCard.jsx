@@ -36,16 +36,16 @@ const InsightCard = ({ icon, label, value, sub, color, glow }) => {
       {/* Label */}
       <p className="
         m-0 mb-1.5
-        text-[11px] font-bold uppercase tracking-[0.07em]
+        text-[12px] font-bold uppercase tracking-[0.07em]
         text-light-subtle dark:text-dark-subtle
-        font-['DM_Mono']
+        font-['Roboto_Mono']
       ">
         {label}
       </p>
 
       {/* Main value */}
       <p
-        className="m-0 mb-1.5 text-[22px] font-extrabold leading-[1.1] font-['Syne']"
+        className="m-0 mb-1.5 text-[24px] font-bold leading-[1.1] font-['Roboto']"
         style={{ color }}
       >
         {value}
@@ -53,9 +53,9 @@ const InsightCard = ({ icon, label, value, sub, color, glow }) => {
 
       {/* Sub text */}
       <p className="
-        m-0 text-[12px] leading-relaxed
+        m-0 text-[13px] leading-relaxed
         text-light-subtle dark:text-dark-subtle
-        font-['DM_Mono']
+        font-['Roboto_Mono']
       ">
         {sub}
       </p>

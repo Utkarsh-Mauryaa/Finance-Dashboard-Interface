@@ -57,18 +57,18 @@ function Insights() {
   return (
     <Layout>
       <div className="max-w-[1200px]">
-        <div className="flex gap-5 flex-wrap mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-6">
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="flex-[1_1_420px] min-w-0 bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl p-5 transition-colors duration-300"
+            className="w-full sm:flex-[1_1_420px] min-w-0 bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl p-4 sm:p-5 transition-colors duration-300"
           >
-            <p className="text-light-subtle dark:text-dark-subtle font-['DM_Mono'] text-[12px] uppercase tracking-[0.08em] mb-1">Monthly Comparison</p>
-            <p className="text-light-subtle/50 dark:text-dark-subtle/50 font-['DM_Mono'] text-[11px] mb-4">Spending per category over last 6 months</p>
+            <p className="text-light-subtle dark:text-dark-subtle font-['Roboto_Mono'] text-[13px] uppercase tracking-[0.08em] mb-1">Monthly Comparison</p>
+            <p className="text-light-subtle/50 dark:text-dark-subtle/50 font-['Roboto_Mono'] text-[12px] mb-4">Spending per category over last 6 months</p>
             <div className="flex flex-wrap gap-x-3.5 gap-y-1.5 mb-4">
               {CATEGORIES.map((cat) => (
                 <div key={cat} className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-[2px] inline-block shrink-0" style={{ background: CATEGORY_COLORS[cat] }} />
-                  <span className="text-[11px] text-light-subtle dark:text-dark-subtle font-['DM_Mono']">{cat}</span>
+                  <span className="text-[12px] text-light-subtle dark:text-dark-subtle font-['Roboto_Mono']">{cat}</span>
                 </div>
               ))}
             </div>
@@ -76,10 +76,10 @@ function Insights() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="flex-[1_1_300px] min-w-0 bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl p-5 transition-colors duration-300"
+            className="w-full sm:flex-[1_1_300px] min-w-0 bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl p-4 sm:p-5 transition-colors duration-300"
           >
-            <p className="text-light-subtle dark:text-dark-subtle font-['DM_Mono'] text-[12px] uppercase tracking-[0.08em] mb-1">Category Breakdown</p>
-            <p className="text-light-subtle/50 dark:text-dark-subtle/50 font-['DM_Mono'] text-[11px] mb-5">Share of total spending</p>
+            <p className="text-light-subtle dark:text-dark-subtle font-['Roboto_Mono'] text-[13px] uppercase tracking-[0.08em] mb-1">Category Breakdown</p>
+            <p className="text-light-subtle/50 dark:text-dark-subtle/50 font-['Roboto_Mono'] text-[12px] mb-5">Share of total spending</p>
             <div className="flex flex-col gap-3.5">
               {sortedCategories.map((cat, i) => {
                 const pct    = breakdownTotal > 0 ? Math.round((cat.value / breakdownTotal) * 100) : 0;
@@ -89,11 +89,11 @@ function Insights() {
                     <div className="flex justify-between items-center mb-1.5">
                       <div className="flex items-center gap-2">
                         <span className="w-[9px] h-[9px] rounded-[2px] shrink-0 inline-block" style={{ background: cat.color }} />
-                        <span className="text-[13px] text-light-text dark:text-dark-text font-['DM_Sans'] font-medium">{cat.label}</span>
+                        <span className="text-[14px] text-light-text dark:text-dark-text font-['Roboto'] font-medium">{cat.label}</span>
                       </div>
                       <div className="flex items-center gap-2.5">
-                        <span className="text-[12px] font-bold text-light-text dark:text-dark-text font-['DM_Mono']">{fmt(cat.value)}</span>
-                        <span className="text-[11px] text-light-subtle dark:text-dark-subtle font-['DM_Mono'] min-w-[32px] text-right">{pct}%</span>
+                        <span className="text-[13px] font-bold text-light-text dark:text-dark-text font-['Roboto_Mono']">{fmt(cat.value)}</span>
+                        <span className="text-[12px] text-light-subtle dark:text-dark-subtle font-['Roboto_Mono'] min-w-[32px] text-right">{pct}%</span>
                       </div>
                     </div>
                     <div className="h-1.5 bg-light-border dark:bg-dark-border rounded-full overflow-hidden">
@@ -107,9 +107,9 @@ function Insights() {
 
         </div>
 
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex gap-3 sm:gap-4 flex-wrap">
           {insightCards.map((card, i) => (
-            <motion.div key={card.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="flex-[1_1_220px] min-w-[200px]">
+            <motion.div key={card.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }} className="flex-[1_1_220px] min-w-[180px] sm:min-w-[200px]">
               <InsightCard {...card} />
             </motion.div>
           ))}

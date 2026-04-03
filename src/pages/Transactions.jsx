@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import AddTransactionDialog from "../components/specific/AddTransactionDialog";
 import { motion } from "framer-motion";
 import { MdAdd } from "react-icons/md";
+import { Select, MenuItem } from "@mui/material";
 
 const STORAGE_KEY = "fin_transactions";
 
@@ -24,8 +25,8 @@ const saveRows = (rows) => {
 };
 
 const Transactions = () => {
-  const [isLoading, setIsLoading]   = useState(true);
-  const [rows, setRows]             = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [rows, setRows] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const isAdmin = useSelector((state) => state.adminCheck.isAdmin);
@@ -52,37 +53,93 @@ const Transactions = () => {
   };
 
   const columns = [
-    { field: "id",       headerName: "ID",       width: 200, headerClassName: "table-header" },
-    { field: "date",     headerName: "Date",     width: 200, headerClassName: "table-header" },
+    { field: "id", headerName: "ID", width: 200, headerClassName: "table-header" },
+    { field: "date", headerName: "Date", width: 200, headerClassName: "table-header" },
     {
       field: "amount", headerName: "Amount", width: 150, headerClassName: "table-header",
       editable: isAdmin,
       renderCell: (params) => (
-        <span className="text-light-text dark:text-dark-text font-['Syne'] font-semibold">
+        <span className="text-light-text dark:text-dark-text font-['Roboto'] font-semibold">
           {params.row.amount}
         </span>
       ),
     },
     {
-      field: "category", headerName: "Category", width: 200, headerClassName: "table-header",
-      editable: isAdmin,
-      renderCell: (params) => (
-        <span className="text-light-text dark:text-dark-text font-['Syne'] font-semibold">
-          {params.row.category}
-        </span>
-      ),
+      field: "category", headerName: "Category", width: 220, headerClassName: "table-header",
+      renderCell: (params) => {
+        if (!isAdmin) {
+          return (
+            <span className="text-light-text dark:text-dark-text font-['Roboto'] font-semibold">
+              {params.row.category}
+            </span>
+          );
+        }
+        return (
+          <Select
+            value={params.row.category}
+            onChange={(e) => handleRowUpdate({ ...params.row, category: e.target.value })}
+            variant="standard"
+            disableUnderline
+            sx={{
+              width: "100%", maxWidth: "160px",
+              fontFamily: "'Roboto Mono', monospace",
+              fontSize: "13px",
+              color: "var(--text)",
+              "& .MuiSelect-select": {
+                padding: "6px 10px !important",
+                background: "var(--surface2)",
+                border: "1px solid var(--border)",
+                borderRadius: "6px",
+              },
+              "& .MuiSvgIcon-root": { color: "var(--text-muted)" }
+            }}
+          >
+            {["Food", "Health", "Entertainment", "Shopping", "Utilities", "Transport"].map((opt) => (
+              <MenuItem key={opt} value={opt}>{opt}</MenuItem>
+            ))}
+          </Select>
+        );
+      },
     },
     {
       field: "type", headerName: "Type", width: 200, headerClassName: "table-header",
-      editable: isAdmin,
-      renderCell: (params) => (
-        <span
-          className="font-['DM_Mono'] text-[13px] font-semibold"
-          style={{ color: params.row.type === "Income" ? "#63dcbe" : "#e05c7a" }}
-        >
-          {params.row.type}
-        </span>
-      ),
+      renderCell: (params) => {
+        if (!isAdmin) {
+          return (
+            <span
+              className="font-['Roboto_Mono'] text-[14px] font-semibold"
+              style={{ color: params.row.type === "Income" ? "#63dcbe" : "#e05c7a" }}
+            >
+              {params.row.type}
+            </span>
+          );
+        }
+        return (
+          <Select
+            value={params.row.type}
+            onChange={(e) => handleRowUpdate({ ...params.row, type: e.target.value })}
+            variant="standard"
+            disableUnderline
+            sx={{
+              width: "100%", maxWidth: "140px",
+              fontFamily: "'Roboto Mono', monospace",
+              fontSize: "13px",
+              fontWeight: 700,
+              color: params.row.type === "Income" ? "#63dcbe" : "#e05c7a",
+              "& .MuiSelect-select": {
+                padding: "6px 10px !important",
+                background: "var(--surface2)",
+                border: "1px solid var(--border)",
+                borderRadius: "6px",
+              },
+              "& .MuiSvgIcon-root": { color: "var(--text-muted)" }
+            }}
+          >
+            <MenuItem value="Income">Income</MenuItem>
+            <MenuItem value="Expense">Expense</MenuItem>
+          </Select>
+        );
+      },
     },
   ];
 
@@ -92,33 +149,31 @@ const Transactions = () => {
         <LayoutLoaderAdmin />
       ) : (
         <>
-          {isAdmin && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-4"
-            >
-              <button
-                onClick={() => setDialogOpen(true)}
-                className="
-                  flex items-center gap-2 px-[18px] py-[9px] rounded-[10px]
-                  border-none bg-gradient-to-r from-accent-green to-[#3bb8f5]
-                  text-dark-bg font-['Syne'] font-extrabold text-[13px]
-                  cursor-pointer transition-opacity duration-150
-                  hover:opacity-90
-                "
-              >
-                <MdAdd size={18} />
-                Add Transaction
-              </button>
-            </motion.div>
-          )}
-
           <Table
             heading="All Transactions"
             columns={columns}
             rows={rows}
             processRowUpdate={handleRowUpdate}
+            action={
+              isAdmin && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+                  <button
+                    onClick={() => setDialogOpen(true)}
+                    className="
+                      flex items-center gap-2 px-[16px] py-[8px] rounded-[10px]
+                      border-none bg-gradient-to-r from-accent-green to-[#3bb8f5]
+                      text-dark-bg font-['Roboto'] font-bold text-[14px]
+                      cursor-pointer transition-opacity duration-150
+                      hover:opacity-90
+                    "
+                  >
+                    <MdAdd size={18} />
+                    <span className="hidden sm:inline">Add Transaction</span>
+                    <span className="inline sm:hidden">Add</span>
+                  </button>
+                </motion.div>
+              )
+            }
           />
 
           <AddTransactionDialog

@@ -2,7 +2,7 @@ const ActionCard = ({ title, value, icon, color }) => (
   <div className="
     bg-light-surface dark:bg-dark-surface
     border border-light-border dark:border-dark-border
-    rounded-2xl p-5
+    rounded-2xl p-4 sm:p-5
     flex items-center gap-4
     h-[100px]
     transition-colors duration-300
@@ -23,16 +23,16 @@ const ActionCard = ({ title, value, icon, color }) => (
 
     <div>
       <p className="
-        text-2xl font-extrabold m-0 leading-none
+        text-2xl font-bold m-0 leading-none
         text-light-text dark:text-dark-text
-        font-['Syne']
+        font-['Roboto']
       ">
         {value ?? "—"}
       </p>
       <p className="
-        text-[11px] mt-1 mb-0
+        text-[12px] mt-1 mb-0
         text-light-subtle dark:text-dark-subtle
-        font-['DM_Mono'] uppercase tracking-[0.06em]
+        font-['Roboto_Mono'] uppercase tracking-[0.06em]
       ">
         {title}
       </p>
