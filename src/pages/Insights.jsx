@@ -9,27 +9,14 @@ import {
   MONTHLY_CATEGORY_DATA, expense, income,
 } from "../utils/sampleData";
 
+import { getCategoryStats, getMonthlyChange, getSavingsRate } from "../lib/features";
+
 const fmt = (n) =>
   n.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
-const categoryTotals = CATEGORIES.reduce((acc, cat) => {
-  acc[cat] = MONTHLY_CATEGORY_DATA.reduce((s, m) => s + (m[cat] ?? 0), 0);
-  return acc;
-}, {});
-
-const sortedCategories = [...BREAKDOWN].sort((a, b) => b.value - a.value);
-const topCategory      = sortedCategories[0];
-const topCategoryTotal = categoryTotals[topCategory.label] ?? topCategory.value;
-
-const lastMonth = MONTHLY_CATEGORY_DATA[MONTHLY_CATEGORY_DATA.length - 1];
-const prevMonth = MONTHLY_CATEGORY_DATA[MONTHLY_CATEGORY_DATA.length - 2];
-const lastTotal = CATEGORIES.reduce((s, c) => s + (lastMonth[c] ?? 0), 0);
-const prevTotal = CATEGORIES.reduce((s, c) => s + (prevMonth[c] ?? 0), 0);
-const momChange = prevTotal > 0 ? Math.round(((lastTotal - prevTotal) / prevTotal) * 100) : 0;
-
-const totalIncome  = income.reduce((s, v) => s + v, 0);
-const totalExpense = expense.reduce((s, v) => s + v, 0);
-const savingsRate  = totalIncome > 0 ? Math.round(((totalIncome - totalExpense) / totalIncome) * 100) : 0;
+const { sortedCategories, topCategory, topCategoryTotal } = getCategoryStats(CATEGORIES, BREAKDOWN, MONTHLY_CATEGORY_DATA);
+const momChange = getMonthlyChange(CATEGORIES, MONTHLY_CATEGORY_DATA);
+const savingsRate = getSavingsRate(income, expense);
 
 const insightCards = [
   { icon: "🏆", label: "Highest Spending Category", value: topCategory.label, sub: `${fmt(topCategoryTotal)} total across 6 months`, color: "#ffa31a", glow: "rgba(255,163,26,0.15)" },
