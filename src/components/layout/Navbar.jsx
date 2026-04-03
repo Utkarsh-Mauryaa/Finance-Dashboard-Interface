@@ -7,6 +7,10 @@ import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsAdmin } from "../../redux/reducer/adminCheck.slice";
 import { toggleTheme } from "../../redux/reducer/theme.slice";
+import { NavbarHeaderClass } from "../../utils/styles";
+import { MobileButtonClass } from "../../utils/styles";
+import { RoleButtonClass } from "../../utils/styles";
+import { ToggleThemeButtonClass } from "../../utils/styles";
 
 export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
@@ -22,27 +26,13 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="
-        sticky top-0 z-50 w-full h-[52px] sm:h-[63px]
-        flex items-center justify-between px-2 sm:px-5
-        bg-light-surface dark:bg-dark-nav
-        border-b border-light-border dark:border-dark-border
-        backdrop-blur-sm
-        transition-colors duration-300
-      ">
+      <header className={NavbarHeaderClass}>
 
-        {/* ── LEFT: Hamburger (Mobile Only) & Welcome text ── */}
-        <div className="flex items-center gap-3">
+        
+        <div className="flex items-center gap-3"> 
           <button
             onClick={() => setIsMobile(!isMobile)}
-            className="
-              md:hidden flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl
-              border border-light-border dark:border-dark-border
-              text-light-muted dark:text-dark-muted
-              hover:bg-light-hover dark:hover:bg-dark-hover
-              hover:text-light-text dark:hover:text-dark-text
-              transition-colors duration-150 cursor-pointer
-            "
+            className={MobileButtonClass}
           >
             <HiMenuAlt2 className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px]" />
           </button>
@@ -63,15 +53,13 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ── RIGHT cluster ── */}
+        
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
 
-          {/* Role label (hidden on mobile) */}
           <span className="hidden md:inline text-[11px] lg:text-[12px] font-bold uppercase tracking-widest text-light-muted dark:text-dark-muted select-none">
             Role:
           </span>
 
-          {/* Role pill switcher */}
           <div className="
             flex items-center gap-[2px] sm:gap-[3px] p-[2px] sm:p-[3px] rounded-[8px] sm:rounded-[10px]
             border border-light-border dark:border-dark-border
@@ -80,8 +68,7 @@ export default function Navbar() {
             <button
               onClick={() => handleRoleChange(false)}
               className={`
-                px-2 sm:px-3 md:px-4 py-[3px] sm:py-[5px] rounded-[6px] sm:rounded-[7px] text-[10px] sm:text-[11px] md:text-[12px] font-bold uppercase
-                tracking-[0.07em] cursor-pointer transition-all duration-150
+                ${RoleButtonClass}
                 ${!isAdmin
                   ? "bg-accent-cyan text-dark-bg shadow-[0_2px_10px_rgba(0,212,255,0.3)]"
                   : "bg-transparent text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text"
@@ -93,8 +80,7 @@ export default function Navbar() {
             <button
               onClick={() => handleRoleChange(true)}
               className={`
-                px-2 sm:px-3 md:px-4 py-[3px] sm:py-[5px] rounded-[6px] sm:rounded-[7px] text-[10px] sm:text-[11px] md:text-[12px] font-bold uppercase
-                tracking-[0.07em] cursor-pointer transition-all duration-150
+                ${RoleButtonClass}
                 ${isAdmin
                   ? "bg-accent-cyan text-dark-bg shadow-[0_2px_10px_rgba(0,212,255,0.3)]"
                   : "bg-transparent text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text"
@@ -105,24 +91,15 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Theme toggle */}
           <button
             onClick={() => dispatch(toggleTheme())}
-            className="
-              flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl
-              border border-light-border dark:border-dark-border
-              bg-light-pill dark:bg-dark-pill
-              text-light-muted dark:text-dark-muted
-              hover:bg-light-hover dark:hover:bg-dark-hover
-              hover:text-accent-amber dark:hover:text-accent-cyan
-              transition-all duration-200 cursor-pointer
-            "
+            className={ToggleThemeButtonClass}
             title={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <HiSun className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px]" /> : <HiMoon className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px]" />}
           </button>
 
-          {/* Avatar circle */}
+          
           <div className={`
             w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center
             text-[11px] sm:text-[13px] font-extrabold text-dark-bg select-none
@@ -138,7 +115,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* ── Mobile Drawer ── */}
+      
       <Drawer
         open={isMobile}
         onClose={() => setIsMobile(false)}

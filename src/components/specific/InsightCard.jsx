@@ -19,13 +19,13 @@ const InsightCard = ({ icon, label, value, sub, color, glow }) => {
         e.currentTarget.style.transform = "none";
       }}
     >
-      {/* Top accent line */}
+      
       <div
         className="absolute top-0 left-0 right-0 h-[3px]"
         style={{ background: `linear-gradient(90deg, ${color}, transparent)` }}
       />
 
-      {/* Icon badge */}
+      
       <div
         className="w-9 h-9 rounded-[10px] flex items-center justify-center text-[18px] mb-[14px]"
         style={{ background: glow }}
@@ -33,7 +33,7 @@ const InsightCard = ({ icon, label, value, sub, color, glow }) => {
         {icon}
       </div>
 
-      {/* Label */}
+      
       <p className="
         m-0 mb-1.5
         text-[12px] font-bold uppercase tracking-[0.07em]
@@ -43,7 +43,7 @@ const InsightCard = ({ icon, label, value, sub, color, glow }) => {
         {label}
       </p>
 
-      {/* Main value */}
+      
       <p
         className="m-0 mb-1.5 text-[24px] font-bold leading-[1.1] font-['Roboto']"
         style={{ color }}
@@ -51,7 +51,7 @@ const InsightCard = ({ icon, label, value, sub, color, glow }) => {
         {value}
       </p>
 
-      {/* Sub text */}
+      
       <p className="
         m-0 text-[13px] leading-relaxed
         text-light-subtle dark:text-dark-subtle

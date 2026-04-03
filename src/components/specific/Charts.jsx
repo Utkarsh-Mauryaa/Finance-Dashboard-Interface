@@ -34,7 +34,7 @@ const tooltipBase = {
   cornerRadius: 8,
 };
 
-// ── LINE CHART ────────────────────────────────────────────────────────────────
+
 const lineChartOptions = {
   maintainAspectRatio: false,
   responsive: true,
@@ -107,7 +107,7 @@ export const LineChart = ({ income = [], expense = [] }) => {
   return <div style={{ height: 260 }}><Line data={data} options={lineChartOptions} /></div>;
 };
 
-// ── DOUGHNUT CHART ────────────────────────────────────────────────────────────
+
 const doughnutChartOptions = {
   responsive: true,
   maintainAspectRatio: true,
@@ -142,7 +142,6 @@ export const DoughnutChart = ({ value = [], labels = [] }) => {
   return <Doughnut data={data} options={doughnutChartOptions} />;
 };
 
-// ── BAR CHART — monthly spending per category ─────────────────────────────────
 const barChartOptions = {
   maintainAspectRatio: false,
   responsive: true,

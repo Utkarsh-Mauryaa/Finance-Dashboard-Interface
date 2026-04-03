@@ -54,7 +54,6 @@ const Dashboard = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-6">
 
-          {/* Line chart card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -72,7 +71,7 @@ const Dashboard = () => {
             <LineChart income={income} expense={expense} />
           </motion.div>
 
-          {/* Doughnut card */}
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -91,7 +90,7 @@ const Dashboard = () => {
 
             <div className="flex-1 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 min-h-0">
 
-              {/* Legend */}
+              
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-0.5 w-full sm:w-auto">
                 {BREAKDOWN.map((item) => {
                   const pct = Math.round((item.value / total) * 100);
@@ -116,7 +115,7 @@ const Dashboard = () => {
                 })}
               </div>
 
-              {/* Doughnut */}
+              
               <div className="w-[130px] h-[130px] sm:w-[190px] sm:h-[190px] shrink-0 flex items-center justify-center">
                 <DoughnutChart
                   labels={BREAKDOWN.map((i) => i.label)}

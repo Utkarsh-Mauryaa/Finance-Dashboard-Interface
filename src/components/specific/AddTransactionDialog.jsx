@@ -5,12 +5,13 @@ import {
   DialogTitle,
   MenuItem,
   Select,
-  InputLabel,
   FormControl,
   IconButton,
 } from "@mui/material";
 import { IoClose } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
+import { SelectSx } from "../../utils/styles";
+import { TransactionDialogLableStyle } from "../../utils/styles";
 
 
 const CATEGORIES = [
@@ -40,17 +41,6 @@ const inputStyle = {
   outline: "none",
   boxSizing: "border-box",
   transition: "border-color 0.15s",
-};
-
-const labelStyle = {
-  display: "block",
-  fontSize: 12,
-  fontWeight: 700,
-  color: "var(--text-muted)",
-  textTransform: "uppercase",
-  letterSpacing: "0.07em",
-  marginBottom: 6,
-  fontFamily: "'Roboto Mono', monospace",
 };
 
 const EMPTY_FORM = { date: "", amount: "", category: "", type: "" };
@@ -95,19 +85,6 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
   const set = (key, val) => {
     setForm((f) => ({ ...f, [key]: val }));
     setErrors((e) => ({ ...e, [key]: undefined }));
-  };
-
-  // shared MUI Select sx
-  const selectSx = {
-    color: "var(--text)",
-    fontFamily: "'Roboto Mono', monospace",
-    fontSize: 14,
-    background: "var(--bg)",
-    borderRadius: "8px",
-    "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--border)" },
-    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "var(--accent)" },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "var(--accent)" },
-    "& .MuiSvgIcon-root": { color: "var(--text-muted)" },
   };
 
   return (
@@ -168,7 +145,7 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
 
         {/* Date */}
         <div>
-          <label style={labelStyle}>Date</label>
+          <label style={TransactionDialogLableStyle}>Date</label>
           <input
             type="date"
             value={form.date}
@@ -186,7 +163,7 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
 
         {/* Amount */}
         <div>
-          <label style={labelStyle}>Amount (₹)</label>
+          <label style={TransactionDialogLableStyle}>Amount (₹)</label>
           <input
             type="number"
             min="1"
@@ -208,13 +185,13 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
 
           {/* Category */}
           <div>
-            <label style={labelStyle}>Category</label>
+            <label style={TransactionDialogLableStyle}>Category</label>
             <FormControl fullWidth size="small" error={!!errors.category}>
               <Select
                 value={form.category}
                 onChange={(e) => set("category", e.target.value)}
                 displayEmpty
-                sx={selectSx}
+                sx={SelectSx}
                 MenuProps={{
                   PaperProps: {
                     style: {
@@ -249,13 +226,13 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
 
           {/* Type */}
           <div>
-            <label style={labelStyle}>Type</label>
+            <label style={TransactionDialogLableStyle}>Type</label>
             <FormControl fullWidth size="small" error={!!errors.type}>
               <Select
                 value={form.type}
                 onChange={(e) => set("type", e.target.value)}
                 displayEmpty
-                sx={selectSx}
+                sx={SelectSx}
                 MenuProps={{
                   PaperProps: {
                     style: {

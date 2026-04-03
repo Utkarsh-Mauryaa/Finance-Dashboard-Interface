@@ -26,7 +26,7 @@ const Table = ({ rows, columns, heading, rowHeight = 52, processRowUpdate, actio
         rowHeight={rowHeight}
         processRowUpdate={processRowUpdate}
         onProcessRowUpdateError={(err) => console.error("Row update error:", err)}
-        sx={DataGridStyles}
+        sx={DataGridStyles()}
       />
     </div>
   </div>

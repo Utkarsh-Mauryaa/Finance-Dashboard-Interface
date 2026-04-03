@@ -1,8 +1,5 @@
 import { Skeleton } from "@mui/material";
 
-// Layout.jsx applies .dark to <html> (document.documentElement),
-// so CSS variables resolve correctly everywhere.
-
 const sx = { borderRadius: 2 };
 
 export const LayoutLoaderAdmin = () => (

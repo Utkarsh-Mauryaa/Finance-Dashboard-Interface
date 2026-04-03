@@ -87,3 +87,34 @@ export const DataGridStyles = () => {
         "& .table-header": { background: "var(--surface2)", color: "var(--text-dim)", fontFamily: "'Roboto', sans-serif", fontWeight: 700 },
     }
 }
+
+export const NavbarHeaderClass = "sticky top-0 z-50 w-full h-[52px] sm:h-[63px] flex items-center justify-between px-2 sm:px-5 bg-light-surface dark:bg-dark-nav border-b border-light-border dark:border-dark-border backdrop-blur-sm transition-colors duration-300";
+
+export const MobileButtonClass = "md:hidden flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl border border-light-border dark:border-dark-border text-light-muted dark:text-dark-muted hover:bg-light-hover dark:hover:bg-dark-hover hover:text-light-text dark:hover:text-dark-text transition-colors duration-150 cursor-pointer";
+
+export const RoleButtonClass = "px-2 sm:px-3 md:px-4 py-[3px] sm:py-[5px] rounded-[6px] sm:rounded-[7px] text-[10px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-[0.07em] cursor-pointer transition-all duration-150";
+
+export const ToggleThemeButtonClass = "flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl border border-light-border dark:border-dark-border bg-light-pill dark:bg-dark-pill text-light-muted dark:text-dark-muted hover:bg-light-hover dark:hover:bg-dark-hover hover:text-accent-amber dark:hover:text-accent-cyan transition-all duration-200 cursor-pointer";
+
+export const SelectSx = {
+    color: "var(--text)",
+    fontFamily: "'Roboto Mono', monospace",
+    fontSize: 14,
+    background: "var(--bg)",
+    borderRadius: "8px",
+    "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--border)" },
+    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "var(--accent)" },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "var(--accent)" },
+    "& .MuiSvgIcon-root": { color: "var(--text-muted)" },
+};
+
+export const TransactionDialogLableStyle = {
+    display: "block",
+    fontSize: 12,
+    fontWeight: 700,
+    color: "var(--text-muted)",
+    textTransform: "uppercase",
+    letterSpacing: "0.07em",
+    marginBottom: 6,
+    fontFamily: "'Roboto Mono', monospace",
+}

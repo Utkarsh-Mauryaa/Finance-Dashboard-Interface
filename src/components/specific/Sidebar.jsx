@@ -22,7 +22,7 @@ const Sidebar = ({ onClose }) => {
   return (
     <div className="h-full flex flex-col px-4 py-6 bg-light-surface dark:bg-dark-surface transition-colors duration-300">
 
-      {/* Brand */}
+      
       <div className="flex items-center gap-2.5 mb-8 pl-2">
         <div className="w-[34px] h-[34px] rounded-[10px] bg-gradient-to-br from-accent-green to-accent-pink flex items-center justify-center shrink-0 overflow-hidden">
           <img src="./public/ZorvynLogo.jpg" alt="Z" className="w-full h-full object-cover" />
@@ -37,7 +37,7 @@ const Sidebar = ({ onClose }) => {
         </div>
       </div>
 
-      {/* Nav */}
+      
       <nav className="flex flex-col gap-1 flex-1">
         {adminTabs.map((tab) => {
           const isActive = location.pathname === tab.path;
@@ -63,7 +63,7 @@ const Sidebar = ({ onClose }) => {
         })}
       </nav>
 
-      {/* Logout */}
+      
       <button
         onClick={logoutHandler}
         className="

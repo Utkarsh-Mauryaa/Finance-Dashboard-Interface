@@ -9,7 +9,7 @@ const ActionCard = ({ title, value, icon, color }) => (
     hover:border-light-hover dark:hover:border-dark-hover
     group
   ">
-    {/* Icon badge — dynamic color kept via inline style since it's runtime data */}
+    
     <div
       className="w-14 h-14 rounded-[14px] shrink-0 flex items-center justify-center text-[22px] transition-transform duration-200 group-hover:scale-105"
       style={{

@@ -7,8 +7,6 @@ const Layout = ({ children }) => {
   const theme = useSelector((state) => state.theme.theme);
   const isDark = theme === "dark";
 
-  // Apply .dark to <html> so ALL descendants — including MUI portals
-  // appended to <body> — correctly inherit dark CSS variables.
   useEffect(() => {
     const html = document.documentElement;
     if (isDark) {
