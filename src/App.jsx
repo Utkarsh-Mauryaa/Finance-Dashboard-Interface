@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { LayoutLoaderDashboard } from "./components/layout/Loaders";
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
     <Suspense fallback={<LayoutLoaderDashboard />}>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/insights" element={<Insights />} />
