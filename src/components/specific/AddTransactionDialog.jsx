@@ -32,11 +32,11 @@ const inputStyle = {
   width: "100%",
   padding: "10px 14px",
   borderRadius: 8,
-  border: "1px solid #1e2330",
-  background: "#0d0f14",
-  color: "#e8eaf0",
-  fontSize: 13,
-  fontFamily: "'DM Mono', monospace",
+  border: "1px solid var(--border)",
+  background: "var(--bg)",
+  color: "var(--text)",
+  fontSize: 14,
+  fontFamily: "'Roboto Mono', monospace",
   outline: "none",
   boxSizing: "border-box",
   transition: "border-color 0.15s",
@@ -44,13 +44,13 @@ const inputStyle = {
 
 const labelStyle = {
   display: "block",
-  fontSize: 11,
+  fontSize: 12,
   fontWeight: 700,
-  color: "#5a607a",
+  color: "var(--text-muted)",
   textTransform: "uppercase",
   letterSpacing: "0.07em",
   marginBottom: 6,
-  fontFamily: "'DM Mono', monospace",
+  fontFamily: "'Roboto Mono', monospace",
 };
 
 const EMPTY_FORM = { date: "", amount: "", category: "", type: "" };
@@ -99,15 +99,15 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
 
   // shared MUI Select sx
   const selectSx = {
-    color: "#e8eaf0",
-    fontFamily: "'DM Mono', monospace",
-    fontSize: 13,
-    background: "#0d0f14",
+    color: "var(--text)",
+    fontFamily: "'Roboto Mono', monospace",
+    fontSize: 14,
+    background: "var(--bg)",
     borderRadius: "8px",
-    "& .MuiOutlinedInput-notchedOutline": { borderColor: "#1e2330" },
-    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#63dcbe" },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#63dcbe" },
-    "& .MuiSvgIcon-root": { color: "#5a607a" },
+    "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--border)" },
+    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "var(--accent)" },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "var(--accent)" },
+    "& .MuiSvgIcon-root": { color: "var(--text-muted)" },
   };
 
   return (
@@ -116,13 +116,13 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
       onClose={handleClose}
       PaperProps={{
         style: {
-          background: "#13161e",
-          border: "1px solid #1e2330",
+          background: "var(--surface)",
+          border: "1px solid var(--border)",
           borderRadius: 16,
           padding: 0,
           width: "100%",
           maxWidth: 460,
-          boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+          boxShadow: "var(--shadow-modal)",
         },
       }}
     >
@@ -138,18 +138,18 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
         <div>
           <p style={{
             margin: 0,
-            fontSize: 18,
-            fontWeight: 800,
-            color: "#e8eaf0",
-            fontFamily: "'Syne', sans-serif",
+            fontSize: 19,
+            fontWeight: 700,
+            color: "var(--text)",
+            fontFamily: "'Roboto', sans-serif",
           }}>
             Add Transaction
           </p>
           <p style={{
             margin: "4px 0 0",
-            fontSize: 11,
-            color: "#5a607a",
-            fontFamily: "'DM Mono', monospace",
+            fontSize: 12,
+            color: "var(--text-muted)",
+            fontFamily: "'Roboto Mono', monospace",
           }}>
             ID will be generated automatically
           </p>
@@ -157,7 +157,7 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
         <IconButton
           onClick={handleClose}
           size="small"
-          style={{ color: "#5a607a" }}
+          style={{ color: "var(--text-muted)" }}
         >
           <IoClose size={20} />
         </IconButton>
@@ -175,13 +175,13 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
             onChange={(e) => set("date", e.target.value)}
             style={{
               ...inputStyle,
-              borderColor: errors.date ? "#e05c7a" : "#1e2330",
+              borderColor: errors.date ? "var(--accent-rose)" : "var(--border)",
               colorScheme: "dark",
             }}
-            onFocus={(e)  => (e.target.style.borderColor = errors.date ? "#e05c7a" : "#63dcbe")}
-            onBlur={(e)   => (e.target.style.borderColor = errors.date ? "#e05c7a" : "#1e2330")}
+            onFocus={(e)  => (e.target.style.borderColor = errors.date ? "var(--accent-rose)" : "var(--accent)")}
+            onBlur={(e)   => (e.target.style.borderColor = errors.date ? "var(--accent-rose)" : "var(--border)")}
           />
-          {errors.date && <p style={{ color: "#e05c7a", fontSize: 11, marginTop: 4, fontFamily: "'DM Mono',monospace" }}>{errors.date}</p>}
+          {errors.date && <p style={{ color: "var(--accent-rose)", fontSize: 12, marginTop: 4, fontFamily: "'Roboto Mono',monospace" }}>{errors.date}</p>}
         </div>
 
         {/* Amount */}
@@ -195,12 +195,12 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
             onChange={(e) => set("amount", e.target.value)}
             style={{
               ...inputStyle,
-              borderColor: errors.amount ? "#e05c7a" : "#1e2330",
+              borderColor: errors.amount ? "var(--accent-rose)" : "var(--border)",
             }}
-            onFocus={(e)  => (e.target.style.borderColor = errors.amount ? "#e05c7a" : "#63dcbe")}
-            onBlur={(e)   => (e.target.style.borderColor = errors.amount ? "#e05c7a" : "#1e2330")}
+            onFocus={(e)  => (e.target.style.borderColor = errors.amount ? "var(--accent-rose)" : "var(--accent)")}
+            onBlur={(e)   => (e.target.style.borderColor = errors.amount ? "var(--accent-rose)" : "var(--border)")}
           />
-          {errors.amount && <p style={{ color: "#e05c7a", fontSize: 11, marginTop: 4, fontFamily: "'DM Mono',monospace" }}>{errors.amount}</p>}
+          {errors.amount && <p style={{ color: "var(--accent-rose)", fontSize: 12, marginTop: 4, fontFamily: "'Roboto Mono',monospace" }}>{errors.amount}</p>}
         </div>
 
         {/* Category + Type side by side */}
@@ -218,25 +218,25 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
                 MenuProps={{
                   PaperProps: {
                     style: {
-                      background: "#1a1e28",
-                      border: "1px solid #1e2330",
+                      background: "var(--surface2)",
+                      border: "1px solid var(--border)",
                       borderRadius: 10,
-                      boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                      boxShadow: "var(--shadow-modal)",
                     },
                   },
                 }}
               >
-                <MenuItem value="" disabled sx={{ color: "#5a607a", fontFamily: "'DM Mono',monospace", fontSize: 13 }}>
+                <MenuItem value="" disabled sx={{ color: "var(--text-muted)", fontFamily: "'Roboto Mono',monospace", fontSize: 14 }}>
                   Select…
                 </MenuItem>
                 {CATEGORIES.map((c) => (
                   <MenuItem
                     key={c} value={c}
                     sx={{
-                      color: "#e8eaf0", fontFamily: "'DM Mono',monospace", fontSize: 13,
+                      color: "var(--text)", fontFamily: "'Roboto Mono',monospace", fontSize: 14,
                       borderRadius: "6px", margin: "2px 4px", padding: "8px 12px",
-                      "&:hover": { background: "rgba(99,220,190,0.08)", color: "#63dcbe" },
-                      "&.Mui-selected": { background: "rgba(99,220,190,0.12) !important", color: "#63dcbe" },
+                      "&:hover": { background: "color-mix(in srgb, var(--accent) 8%, transparent)", color: "var(--accent)" },
+                      "&.Mui-selected": { background: "color-mix(in srgb, var(--accent) 12%, transparent) !important", color: "var(--accent)" },
                     }}
                   >
                     {c}
@@ -244,7 +244,7 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
                 ))}
               </Select>
             </FormControl>
-            {errors.category && <p style={{ color: "#e05c7a", fontSize: 11, marginTop: 4, fontFamily: "'DM Mono',monospace" }}>{errors.category}</p>}
+            {errors.category && <p style={{ color: "var(--accent-rose)", fontSize: 12, marginTop: 4, fontFamily: "'Roboto Mono',monospace" }}>{errors.category}</p>}
           </div>
 
           {/* Type */}
@@ -259,25 +259,25 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
                 MenuProps={{
                   PaperProps: {
                     style: {
-                      background: "#1a1e28",
-                      border: "1px solid #1e2330",
+                      background: "var(--surface2)",
+                      border: "1px solid var(--border)",
                       borderRadius: 10,
-                      boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                      boxShadow: "var(--shadow-modal)",
                     },
                   },
                 }}
               >
-                <MenuItem value="" disabled sx={{ color: "#5a607a", fontFamily: "'DM Mono',monospace", fontSize: 13 }}>
+                <MenuItem value="" disabled sx={{ color: "var(--text-muted)", fontFamily: "'Roboto Mono',monospace", fontSize: 14 }}>
                   Select…
                 </MenuItem>
                 {TYPES.map((t) => (
                   <MenuItem
                     key={t} value={t}
                     sx={{
-                      color: "#e8eaf0", fontFamily: "'DM Mono',monospace", fontSize: 13,
+                      color: "var(--text)", fontFamily: "'Roboto Mono',monospace", fontSize: 14,
                       borderRadius: "6px", margin: "2px 4px", padding: "8px 12px",
-                      "&:hover": { background: "rgba(99,220,190,0.08)", color: "#63dcbe" },
-                      "&.Mui-selected": { background: "rgba(99,220,190,0.12) !important", color: "#63dcbe" },
+                      "&:hover": { background: "color-mix(in srgb, var(--accent) 8%, transparent)", color: "var(--accent)" },
+                      "&.Mui-selected": { background: "color-mix(in srgb, var(--accent) 12%, transparent) !important", color: "var(--accent)" },
                     }}
                   >
                     {t}
@@ -285,7 +285,7 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
                 ))}
               </Select>
             </FormControl>
-            {errors.type && <p style={{ color: "#e05c7a", fontSize: 11, marginTop: 4, fontFamily: "'DM Mono',monospace" }}>{errors.type}</p>}
+            {errors.type && <p style={{ color: "var(--accent-rose)", fontSize: 12, marginTop: 4, fontFamily: "'Roboto Mono',monospace" }}>{errors.type}</p>}
           </div>
 
         </div>
@@ -296,13 +296,13 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
             onClick={handleClose}
             style={{
               flex: 1, padding: "10px 0", borderRadius: 8,
-              border: "1px solid #1e2330", background: "none",
-              color: "#5a607a", cursor: "pointer",
-              fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: 13,
+              border: "1px solid var(--border)", background: "none",
+              color: "var(--text-muted)", cursor: "pointer",
+              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: 14,
               transition: "border-color 0.15s, color 0.15s",
             }}
-            onMouseEnter={(e) => { e.target.style.borderColor = "#5a607a"; e.target.style.color = "#e8eaf0"; }}
-            onMouseLeave={(e) => { e.target.style.borderColor = "#1e2330"; e.target.style.color = "#5a607a"; }}
+            onMouseEnter={(e) => { e.target.style.borderColor = "var(--text-muted)"; e.target.style.color = "var(--text)"; }}
+            onMouseLeave={(e) => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--text-muted)"; }}
           >
             Cancel
           </button>
@@ -313,7 +313,7 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
               border: "none",
               background: "linear-gradient(135deg, #63dcbe, #3bb8f5)",
               color: "#0d0f14", cursor: "pointer",
-              fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 13,
+              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: 14,
               transition: "opacity 0.15s",
             }}
             onMouseEnter={(e) => (e.target.style.opacity = "0.88")}

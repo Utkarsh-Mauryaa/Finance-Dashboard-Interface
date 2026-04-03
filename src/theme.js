@@ -47,7 +47,7 @@ export const getTheme = (mode = "dark") =>
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const globalStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
 
   /* ── Dark tokens (default) ─────────────────────────────────────────────── */
   .dark, .dark * { box-sizing: border-box; }
@@ -106,7 +106,8 @@ export const globalStyles = `
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background 0.3s, color 0.3s;
@@ -125,10 +126,10 @@ export const globalStyles = `
     border-radius: 12px;
     padding: 11px 16px;
     color: var(--text);
-    font-size: 14px;
+    font-size: 15px;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
   }
   .howdy-input::placeholder { color: var(--text-muted); }
   .howdy-input:focus {
@@ -137,9 +138,9 @@ export const globalStyles = `
   }
 
   .howdy-label {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--text-dim);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
     letter-spacing: 0.08em;
     margin-bottom: 6px;
     display: block;
@@ -153,10 +154,10 @@ export const globalStyles = `
     border: none;
     border-radius: 10px;
     padding: 11px 22px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Roboto', sans-serif;
     transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
     letter-spacing: 0.3px;
     white-space: nowrap;
@@ -174,10 +175,10 @@ export const globalStyles = `
     border: 1px solid var(--border-light);
     border-radius: 10px;
     padding: 10px 22px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Roboto', sans-serif;
     transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
   }
   .howdy-btn-outline:hover {
@@ -193,10 +194,10 @@ export const globalStyles = `
     border: 1px solid color-mix(in srgb, var(--accent-rose) 30%, transparent);
     border-radius: 10px;
     padding: 10px 22px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Roboto', sans-serif;
     transition: background 0.2s, transform 0.15s;
   }
   .howdy-btn-danger:hover {
@@ -218,9 +219,9 @@ export const globalStyles = `
   /* ── Error text ─────────────────────────────────────────────────────────── */
   .howdy-err {
     color: var(--accent-rose);
-    font-size: 11px;
+    font-size: 12px;
     margin-top: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
   }
 
   /* ── MUI overrides — both themes ────────────────────────────────────────── */
@@ -233,14 +234,14 @@ export const globalStyles = `
   }
   .MuiDialogTitle-root {
     color: var(--text) !important;
-    font-family: 'Syne', sans-serif !important;
-    font-weight: 800 !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 700 !important;
     border-bottom: 1px solid var(--border) !important;
   }
   .MuiDialogContentText-root {
     color: var(--text-dim) !important;
-    font-family: 'DM Mono', monospace !important;
-    font-size: 13px !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 14px !important;
   }
   .MuiDialogContent-root { padding-top: 20px !important; }
 
@@ -253,8 +254,8 @@ export const globalStyles = `
   }
   .MuiMenuItem-root {
     color: var(--text) !important;
-    font-family: 'Syne', sans-serif !important;
-    font-size: 13px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 14px !important;
     border-radius: 8px !important;
     margin: 2px 6px !important;
   }
@@ -267,8 +268,8 @@ export const globalStyles = `
     background: var(--surface2) !important;
     color: var(--text) !important;
     border: 1px solid var(--border) !important;
-    font-family: 'DM Mono', monospace !important;
-    font-size: 11px !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 12px !important;
     border-radius: 8px !important;
     padding: 6px 10px !important;
   }
@@ -280,29 +281,29 @@ export const globalStyles = `
 
   .MuiTextField-root input {
     color: var(--text) !important;
-    font-family: 'DM Mono', monospace !important;
+    font-family: 'Roboto Mono', monospace !important;
   }
   .MuiTextField-root .MuiOutlinedInput-notchedOutline { border-color: var(--border-light) !important; }
   .MuiTextField-root .Mui-focused .MuiOutlinedInput-notchedOutline { border-color: var(--accent) !important; }
-  .MuiInputLabel-root { color: var(--text-dim) !important; font-family: 'DM Mono', monospace !important; }
+  .MuiInputLabel-root { color: var(--text-dim) !important; font-family: 'Roboto Mono', monospace !important; }
   .MuiInputLabel-root.Mui-focused { color: var(--accent) !important; }
   .MuiInputBase-root { background: var(--surface2) !important; }
-  .MuiSelect-select { color: var(--text) !important; font-family: 'DM Mono', monospace !important; }
+  .MuiSelect-select { color: var(--text) !important; font-family: 'Roboto Mono', monospace !important; }
 
   /* ── DataGrid ───────────────────────────────────────────────────────────── */
   .MuiDataGrid-root {
     background: var(--surface) !important;
     color: var(--text) !important;
     border-color: var(--border) !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
   }
   .MuiDataGrid-columnHeaders { background: var(--surface2) !important; border-bottom: 1px solid var(--border) !important; }
   .MuiDataGrid-columnHeader  { background: var(--surface2) !important; }
   .MuiDataGrid-columnHeaderTitle {
     color: var(--text-dim) !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
     font-weight: 700 !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
     text-transform: uppercase !important;
     letter-spacing: 0.06em !important;
   }
@@ -310,8 +311,8 @@ export const globalStyles = `
   .MuiDataGrid-cell {
     color: var(--text) !important;
     border-bottom: none !important;
-    font-family: 'Syne', sans-serif !important;
-    font-size: 13px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 14px !important;
   }
   .MuiDataGrid-cell:focus, .MuiDataGrid-cell:focus-within { outline: none !important; }
   .MuiDataGrid-row { border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent) !important; }
@@ -319,7 +320,7 @@ export const globalStyles = `
   .MuiDataGrid-row.Mui-selected   { background: color-mix(in srgb, var(--accent) 8%, transparent) !important; }
   .MuiDataGrid-footerContainer { background: var(--surface2) !important; border-top: 1px solid var(--border) !important; }
   .MuiDataGrid-filler, .MuiDataGrid-filler > div { background: var(--surface2) !important; border-top: none !important; }
-  .MuiTablePagination-root { color: var(--text-dim) !important; font-family: 'DM Mono', monospace !important; font-size: 12px !important; }
+  .MuiTablePagination-root { color: var(--text-dim) !important; font-family: 'Roboto Mono', monospace !important; font-size: 13px !important; }
   .MuiTablePagination-actions button { color: var(--text-dim) !important; }
   .MuiTablePagination-actions button:hover { color: var(--accent) !important; }
   .MuiCheckbox-root { color: var(--text-muted) !important; }
@@ -335,18 +336,18 @@ export const globalStyles = `
     border-color: var(--border) !important;
   }
   .MuiDataGrid-menuList { background: var(--surface2) !important; padding: 4px !important; }
-  .MuiDataGrid-menuList .MuiMenuItem-root { color: var(--text) !important; font-size: 13px !important; border-radius: 6px !important; }
+  .MuiDataGrid-menuList .MuiMenuItem-root { color: var(--text) !important; font-size: 14px !important; border-radius: 6px !important; }
   .MuiDataGrid-menuList .MuiMenuItem-root:hover { background: color-mix(in srgb, var(--accent) 8%, transparent) !important; color: var(--accent) !important; }
   .MuiDataGrid-menuList .MuiDivider-root { border-color: var(--border) !important; }
-  .MuiDataGrid-paper .MuiButton-root { color: var(--accent) !important; font-family: 'Syne', sans-serif !important; }
+  .MuiDataGrid-paper .MuiButton-root { color: var(--accent) !important; font-family: 'Roboto', sans-serif !important; }
   .MuiDataGrid-paper .MuiButton-root:hover { background: color-mix(in srgb, var(--accent) 8%, transparent) !important; }
   .MuiDataGrid-paper .MuiSvgIcon-root { color: var(--text-dim) !important; }
-  .MuiDataGrid-paper .MuiInputBase-root { color: var(--text) !important; font-family: 'DM Mono', monospace !important; }
+  .MuiDataGrid-paper .MuiInputBase-root { color: var(--text) !important; font-family: 'Roboto Mono', monospace !important; }
 
   .table-header {
     background: var(--surface2) !important;
     color: var(--text-dim) !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
     font-weight: 700 !important;
   }
 
@@ -357,10 +358,10 @@ export const globalStyles = `
   .MuiSkeleton-root { background: color-mix(in srgb, var(--text) 6%, transparent) !important; }
 
   /* Light-specific lift for MUI surfaces */
-  :not(.dark) .MuiDialog-paper,
-  :not(.dark) .MuiMenu-paper,
-  :not(.dark) .MuiDrawer-paper,
-  :not(.dark) .MuiDataGrid-paper {
+  html:not(.dark) .MuiDialog-paper,
+  html:not(.dark) .MuiMenu-paper,
+  html:not(.dark) .MuiDrawer-paper,
+  html:not(.dark) .MuiDataGrid-paper {
     box-shadow: 0 8px 40px rgba(15,17,23,0.12) !important;
   }
 `;
