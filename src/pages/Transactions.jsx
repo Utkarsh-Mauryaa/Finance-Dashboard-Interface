@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { LayoutLoaderAdmin } from "../components/layout/Loaders";
-import Table from "../components/specific/Table";
-import Layout from "../components/layout/Layout";
-import { useSelector } from "react-redux";
-import AddTransactionDialog from "../components/specific/AddTransactionDialog";
+import { MenuItem, Select } from "@mui/material";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { MdAdd } from "react-icons/md";
-import { Select, MenuItem } from "@mui/material";
+import { useSelector } from "react-redux";
+import Layout from "../components/layout/Layout";
+import { LayoutLoaderAdmin } from "../components/layout/Loaders";
+import AddTransactionDialog from "../components/specific/AddTransactionDialog";
+import Table from "../components/specific/Table";
 import { transactionData } from "../utils/sampleData";
 
 const STORAGE_KEY = "fin_transactions";

@@ -118,3 +118,17 @@ export const TransactionDialogLableStyle = {
     marginBottom: 6,
     fontFamily: "'Roboto Mono', monospace",
 }
+
+export const inputStyle = {
+  width: "100%",
+  padding: "10px 14px",
+  borderRadius: 8,
+  border: "1px solid var(--border)",
+  background: "var(--bg)",
+  color: "var(--text)",
+  fontSize: 14,
+  fontFamily: "'Roboto Mono', monospace",
+  outline: "none",
+  boxSizing: "border-box",
+  transition: "border-color 0.15s",
+};

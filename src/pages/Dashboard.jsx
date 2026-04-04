@@ -1,26 +1,23 @@
 import { motion } from "framer-motion";
-import { BiSolidMessageSquareDetail } from "react-icons/bi";
-import { MdGroups } from "react-icons/md";
-import { BsCurrencyDollar } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { LayoutLoaderDashboard } from "../components/layout/Loaders";
-import { DoughnutChart, LineChart } from "../components/specific/Charts";
+import { BiSolidMessageSquareDetail } from "react-icons/bi";
+import { BsCurrencyDollar } from "react-icons/bs";
+import { MdGroups } from "react-icons/md";
 import Layout from "../components/layout/Layout";
+import { LayoutLoaderDashboard } from "../components/layout/Loaders";
 import ActionCard from "../components/specific/ActionCard";
-import { income, expense, BREAKDOWN, CATEGORIES, MONTHLY_CATEGORY_DATA, transactionData } from "../utils/sampleData";
-import { getTotalIncome, getTotalExpense, getSavings, getCategoryStats } from "../lib/features";
+import { DoughnutChart, LineChart } from "../components/specific/Charts";
+import { getCategoryStats, getSavings, getTotalExpense, getTotalIncome } from "../lib/features";
+import { CATEGORIES, CATEGORY_COLORS, expense, income, MONTHLY_CATEGORY_DATA, transactionData } from "../utils/sampleData";
 
 const fmt = (n) =>
   n.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
-// Action card totals — from transactionData (single source of truth)
 const totalIncome  = getTotalIncome(transactionData);
 const totalExpense = getTotalExpense(transactionData);
 const savings      = getSavings(transactionData);
 
-// Doughnut + legend — same derivation as Insights category breakdown
-// sortedCategories carries monthly totals, not the old static BREAKDOWN values
-const { sortedCategories } = getCategoryStats(CATEGORIES, BREAKDOWN, MONTHLY_CATEGORY_DATA);
+const { sortedCategories } = getCategoryStats(CATEGORIES, CATEGORY_COLORS, MONTHLY_CATEGORY_DATA);
 const doughnutTotal = sortedCategories.reduce((s, cat) => s + cat.value, 0);
 
 const Dashboard = () => {
@@ -81,7 +78,6 @@ const Dashboard = () => {
 
         <div className="flex flex-col min-[899px]:flex-row gap-4 sm:gap-5 mb-6">
 
-          {/* Line chart card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -99,7 +95,6 @@ const Dashboard = () => {
             <LineChart income={income} expense={expense} />
           </motion.div>
 
-          {/* Doughnut card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -118,7 +113,6 @@ const Dashboard = () => {
 
             <div className="flex-1 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 min-h-0">
 
-              {/* Legend — uses sortedCategories (monthly totals) */}
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-0.5 w-full sm:w-auto">
                 {sortedCategories.map((item) => {
                   const pct = doughnutTotal > 0 ? Math.round((item.value / doughnutTotal) * 100) : 0;
@@ -143,7 +137,6 @@ const Dashboard = () => {
                 })}
               </div>
 
-              {/* Doughnut chart — uses sortedCategories (monthly totals) */}
               <div className="w-[130px] h-[130px] sm:w-[190px] sm:h-[190px] shrink-0 flex items-center justify-center">
                 <DoughnutChart
                   labels={sortedCategories.map((i) => i.label)}

@@ -14,7 +14,7 @@ import {
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { getLast6Months } from "../../lib/features";
 import { CATEGORIES, CATEGORY_COLORS, MONTHLY_CATEGORY_DATA } from "../../utils/sampleData";
-import { transactionData } from "../../utils/sampleData";
+
 
 ChartJS.register(
   CategoryScale, LinearScale, PointElement, LineElement,

@@ -1,20 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 
-// simple arrays used by LineChart
 export const income = [15000, 20000, 45829, 67343, 34500, 98000];
 export const expense = [40000, 53400, 67000, 34000, 90000, 16000];
 
-// doughnut / category breakdown (Dashboard)
-export const BREAKDOWN = [
-  { label: "Food & Dining", value: 100000, color: "rgba(248, 245, 101, 0.95)" },
-  { label: "Transport", value: 200000, color: "rgba(0, 68, 255, 0.8)" },
-  { label: "Shopping", value: 300000, color: "rgba(248, 43, 255, 0.8)" },
-  { label: "Entertainment", value: 400000, color: "rgba(244, 18, 18, 0.8)" },
-  { label: "Health", value: 500000, color: "rgba(42, 250, 23, 0.8)" },
-  { label: "Utilities", value: 600000, color: "rgba(220, 120, 5, 0.8)" },
-];
 
-// monthly spending per category — used by BarChart & Insights
 export const MONTHLY_CATEGORY_DATA = [
   { month: "Oct", "Food & Dining": 8200, Transport: 3100, Shopping: 12000, Entertainment: 4500, Health: 2200, Utilities: 3800 },
   { month: "Nov", "Food & Dining": 9500, Transport: 2800, Shopping: 18000, Entertainment: 6200, Health: 1800, Utilities: 4100 },

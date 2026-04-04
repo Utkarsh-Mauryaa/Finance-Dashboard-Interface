@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
+import { LayoutLoaderInsights } from "../components/layout/Loaders";
 import { BarChart } from "../components/specific/Charts";
 import InsightCard from "../components/specific/InsightCard";
-import { LayoutLoaderInsights } from "../components/layout/Loaders";
 import {
-  BREAKDOWN, CATEGORIES, CATEGORY_COLORS,
-  MONTHLY_CATEGORY_DATA, expense, income,
+  CATEGORIES, CATEGORY_COLORS,
+  MONTHLY_CATEGORY_DATA
 } from "../utils/sampleData";
 
 import { getCategoryStats, getMonthlyChange } from "../lib/features";
@@ -14,11 +14,9 @@ import { getCategoryStats, getMonthlyChange } from "../lib/features";
 const fmt = (n) =>
   !n ? "No Data" : n?.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
-// sortedCategories now carries values summed from MONTHLY_CATEGORY_DATA,
-// not the old static BREAKDOWN values
 const { sortedCategories, topCategory, topCategoryTotal } = getCategoryStats(
   CATEGORIES,
-  BREAKDOWN,
+  CATEGORY_COLORS,
   MONTHLY_CATEGORY_DATA
 );
 const momChange = getMonthlyChange(CATEGORIES, MONTHLY_CATEGORY_DATA);
@@ -46,7 +44,6 @@ const insightCards = [
 function Insights() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Sum from sortedCategories (monthly totals) — consistent with the bar chart
   const breakdownTotal = sortedCategories.reduce((s, cat) => s + cat.value, 0);
 
   useEffect(() => {

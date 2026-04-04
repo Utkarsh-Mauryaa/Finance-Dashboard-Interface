@@ -10,49 +10,21 @@ export const getLast6Months = () => {
   return last6Months;
 };
 
-export const getFormattedLast6Months = () => {
-  const currentDate = new Date();
-  const last6Months = [];
-  for (let i = 0; i < 6; i++) {
-    const monthDate = subMonths(currentDate, i);
-    last6Months.unshift(format(monthDate, "MMM"));
-  }
-  return last6Months;
-};
+export const getCategoryStats = (categories=[], colors={}, monthlyData=[]) => {
 
-// ─────────────────────────────────────────────────────────────────────────────
-// getCategoryStats
-//
-// Previously: sortedCategories used BREAKDOWN values (static hardcoded numbers)
-//             and categoryTotals was computed from monthlyData separately —
-//             the two were never connected.
-//
-// Now: values come entirely from monthlyData by summing each category across
-//      all months. BREAKDOWN is only used for the color of each category.
-//      So the progress bar widths, percentages, and top-category insight card
-//      all reflect the bar chart data exactly.
-// ─────────────────────────────────────────────────────────────────────────────
-export const getCategoryStats = (categories=[], breakdown=[], monthlyData=[]) => {
-  // Sum each category across every month in monthlyData
   const categoryTotals = categories?.reduce((acc, cat) => {
     acc[cat] = monthlyData?.reduce((s, m) => s + (m[cat] ?? 0), 0);
     return acc;
   }, {});
 
-  // Build sortedCategories using monthlyData totals + colors from BREAKDOWN
-  const colorMap = breakdown?.reduce((acc, item) => {
-    acc[item.label] = item.color;
-    return acc;
-  }, {});
-
   const sortedCategories = categories?.map((cat) => ({
       label: cat,
-      value: categoryTotals[cat],          // ← monthly total, not BREAKDOWN value
-      color: colorMap[cat] ?? "#888",
+      value: categoryTotals[cat],          
+      color: colors[cat] ?? "#888",
     })).sort((a, b) => b.value - a.value);
 
   const topCategory      = monthlyData.length === 0 ? "No Data" : sortedCategories[0];
-  const topCategoryTotal = topCategory.value; // already the monthly sum
+  const topCategoryTotal = topCategory?.value ?? 0; 
 
   return { sortedCategories, topCategory, topCategoryTotal };
 };

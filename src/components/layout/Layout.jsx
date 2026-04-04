@@ -22,7 +22,6 @@ const Layout = ({ children }) => {
 
       <div className="flex flex-1 overflow-hidden">
 
-        {/* Desktop sidebar */}
         <aside className="
           hidden md:block
           w-[200px] lg:w-[230px] shrink-0
@@ -34,7 +33,6 @@ const Layout = ({ children }) => {
           <Sidebar />
         </aside>
 
-        {/* Main content */}
         <main className="flex-1 flex flex-col overflow-y-auto bg-light-bg dark:bg-dark-bg transition-colors duration-300">
           <div className="flex-1 flex flex-col p-3 sm:p-4 md:p-6 main-content-padding">
             {children}

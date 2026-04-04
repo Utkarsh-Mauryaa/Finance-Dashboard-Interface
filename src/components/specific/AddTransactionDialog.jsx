@@ -12,36 +12,11 @@ import { IoClose } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import { SelectSx } from "../../utils/styles";
 import { TransactionDialogLableStyle } from "../../utils/styles";
+import { inputStyle } from "../../utils/styles";
+import { CATEGORIES } from "../../utils/sampleData";
 
-
-const CATEGORIES = [
-  "Food",
-  "Health",
-  "Entertainment",
-  "Shopping",
-  "Utilities",
-  "Transport",
-  "Salary",
-  "Freelance",
-  "Investment",
-  "Education",
-];
 
 const TYPES = ["Income", "Expense"];
-
-const inputStyle = {
-  width: "100%",
-  padding: "10px 14px",
-  borderRadius: 8,
-  border: "1px solid var(--border)",
-  background: "var(--bg)",
-  color: "var(--text)",
-  fontSize: 14,
-  fontFamily: "'Roboto Mono', monospace",
-  outline: "none",
-  boxSizing: "border-box",
-  transition: "border-color 0.15s",
-};
 
 const EMPTY_FORM = { date: "", amount: "", category: "", type: "" };
 
@@ -103,7 +78,6 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
         },
       }}
     >
-      {/* ── Header ── */}
       <DialogTitle
         style={{
           display: "flex",
@@ -140,10 +114,8 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
         </IconButton>
       </DialogTitle>
 
-      {/* ── Body ── */}
       <DialogContent style={{ padding: "20px 24px 24px", display: "flex", flexDirection: "column", gap: 18 }}>
 
-        {/* Date */}
         <div>
           <label style={TransactionDialogLableStyle}>Date</label>
           <input
@@ -161,7 +133,6 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
           {errors.date && <p style={{ color: "var(--accent-rose)", fontSize: 12, marginTop: 4, fontFamily: "'Roboto Mono',monospace" }}>{errors.date}</p>}
         </div>
 
-        {/* Amount */}
         <div>
           <label style={TransactionDialogLableStyle}>Amount (₹)</label>
           <input
@@ -180,10 +151,8 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
           {errors.amount && <p style={{ color: "var(--accent-rose)", fontSize: 12, marginTop: 4, fontFamily: "'Roboto Mono',monospace" }}>{errors.amount}</p>}
         </div>
 
-        {/* Category + Type side by side */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
 
-          {/* Category */}
           <div>
             <label style={TransactionDialogLableStyle}>Category</label>
             <FormControl fullWidth size="small" error={!!errors.category}>
@@ -224,7 +193,6 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
             {errors.category && <p style={{ color: "var(--accent-rose)", fontSize: 12, marginTop: 4, fontFamily: "'Roboto Mono',monospace" }}>{errors.category}</p>}
           </div>
 
-          {/* Type */}
           <div>
             <label style={TransactionDialogLableStyle}>Type</label>
             <FormControl fullWidth size="small" error={!!errors.type}>
@@ -267,7 +235,6 @@ const AddTransactionDialog = ({ open, onClose, onAdd }) => {
 
         </div>
 
-        {/* ── Action buttons ── */}
         <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
           <button
             onClick={handleClose}
