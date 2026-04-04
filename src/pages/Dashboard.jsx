@@ -79,7 +79,7 @@ const Dashboard = () => {
     <Layout>
       <div className="max-w-[1200px]">
 
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-6">
+        <div className="flex flex-col min-[899px]:flex-row gap-4 sm:gap-5 mb-6">
 
           {/* Line chart card */}
           <motion.div
@@ -132,7 +132,7 @@ const Dashboard = () => {
                         className="w-2.5 h-2.5 rounded-[3px] shrink-0"
                         style={{ background: item.color }}
                       />
-                      <span className="flex-1 text-light-text dark:text-dark-text font-['Roboto'] text-[13px] truncate">
+                      <span className="flex-1 text-light-text dark:text-dark-text font-['Roboto'] text-[13px] truncate min-[899px]:max-[1010px]:hidden">
                         {item.label}
                       </span>
                       <span className="text-light-subtle dark:text-dark-subtle font-['Roboto_Mono'] text-[12px] shrink-0">
