@@ -1,7 +1,5 @@
 import { format, subMonths } from "date-fns";
 
-// ── existing ──────────────────────────────────────────────────────────────────
-
 export const getLast6Months = () => {
   const currentDate = new Date();
   const last6Months = [];
@@ -22,15 +20,41 @@ export const getFormattedLast6Months = () => {
   return last6Months;
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// getCategoryStats
+//
+// Previously: sortedCategories used BREAKDOWN values (static hardcoded numbers)
+//             and categoryTotals was computed from monthlyData separately —
+//             the two were never connected.
+//
+// Now: values come entirely from monthlyData by summing each category across
+//      all months. BREAKDOWN is only used for the color of each category.
+//      So the progress bar widths, percentages, and top-category insight card
+//      all reflect the bar chart data exactly.
+// ─────────────────────────────────────────────────────────────────────────────
 export const getCategoryStats = (categories, breakdown, monthlyData) => {
+  // Sum each category across every month in monthlyData
   const categoryTotals = categories.reduce((acc, cat) => {
     acc[cat] = monthlyData.reduce((s, m) => s + (m[cat] ?? 0), 0);
     return acc;
   }, {});
 
-  const sortedCategories = [...breakdown].sort((a, b) => b.value - a.value);
-  const topCategory = sortedCategories[0];
-  const topCategoryTotal = categoryTotals[topCategory.label] ?? topCategory.value;
+  // Build sortedCategories using monthlyData totals + colors from BREAKDOWN
+  const colorMap = breakdown.reduce((acc, item) => {
+    acc[item.label] = item.color;
+    return acc;
+  }, {});
+
+  const sortedCategories = categories
+    .map((cat) => ({
+      label: cat,
+      value: categoryTotals[cat],          // ← monthly total, not BREAKDOWN value
+      color: colorMap[cat] ?? "#888",
+    }))
+    .sort((a, b) => b.value - a.value);
+
+  const topCategory      = sortedCategories[0];
+  const topCategoryTotal = topCategory.value; // already the monthly sum
 
   return { sortedCategories, topCategory, topCategoryTotal };
 };
@@ -44,26 +68,11 @@ export const getMonthlyChange = (categories, monthlyData) => {
   return prevTotal > 0 ? Math.round(((lastTotal - prevTotal) / prevTotal) * 100) : 0;
 };
 
-export const getSavingsRate = (incomeArr, expenseArr) => {
-  const totalIncome  = incomeArr.reduce((s, v) => s + v, 0);
-  const totalExpense = expenseArr.reduce((s, v) => s + v, 0);
-  return totalIncome > 0 ? Math.round(((totalIncome - totalExpense) / totalIncome) * 100) : 0;
-};
-
-// ── new — derive summary numbers from transactionData rows ───────────────────
-
-/** Total of all Income rows */
 export const getTotalIncome = (transactions = []) =>
-  transactions
-    .filter((t) => t.type === "Income")
-    .reduce((s, t) => s + t.amount, 0);
+  transactions.filter((t) => t.type === "Income").reduce((s, t) => s + t.amount, 0);
 
-/** Total of all Expense rows */
 export const getTotalExpense = (transactions = []) =>
-  transactions
-    .filter((t) => t.type === "Expense")
-    .reduce((s, t) => s + t.amount, 0);
+  transactions.filter((t) => t.type === "Expense").reduce((s, t) => s + t.amount, 0);
 
-/** Savings = Income - Expense (can be negative) */
 export const getSavings = (transactions = []) =>
   getTotalIncome(transactions) - getTotalExpense(transactions);

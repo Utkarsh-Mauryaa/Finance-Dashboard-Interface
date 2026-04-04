@@ -7,18 +7,21 @@ import { LayoutLoaderDashboard } from "../components/layout/Loaders";
 import { DoughnutChart, LineChart } from "../components/specific/Charts";
 import Layout from "../components/layout/Layout";
 import ActionCard from "../components/specific/ActionCard";
-import { income, expense, BREAKDOWN, transactionData } from "../utils/sampleData";
-import { getTotalIncome, getTotalExpense, getSavings } from "../lib/features";
-
-const total = BREAKDOWN.reduce((s, i) => s + i.value, 0);
+import { income, expense, BREAKDOWN, CATEGORIES, MONTHLY_CATEGORY_DATA, transactionData } from "../utils/sampleData";
+import { getTotalIncome, getTotalExpense, getSavings, getCategoryStats } from "../lib/features";
 
 const fmt = (n) =>
   n.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
-// Derived from transactionData — single source of truth
+// Action card totals — from transactionData (single source of truth)
 const totalIncome  = getTotalIncome(transactionData);
 const totalExpense = getTotalExpense(transactionData);
 const savings      = getSavings(transactionData);
+
+// Doughnut + legend — same derivation as Insights category breakdown
+// sortedCategories carries monthly totals, not the old static BREAKDOWN values
+const { sortedCategories } = getCategoryStats(CATEGORIES, BREAKDOWN, MONTHLY_CATEGORY_DATA);
+const doughnutTotal = sortedCategories.reduce((s, cat) => s + cat.value, 0);
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,13 +48,13 @@ const Dashboard = () => {
       sub: "all expense transactions",
     },
     {
-  title: "Savings",
-  value: (savings < 0 ? "−" : "") + fmt(Math.abs(savings)),  // ✅ manual sign
-  icon: <BsCurrencyDollar />,
-  color: savings >= 0 ? "#3bb8f5" : "#e05c7a",               // ✅ red if negative
-  glow: savings >= 0 ? "rgba(59,184,245,0.15)" : "rgba(224,92,122,0.15)",
-  sub: savings >= 0 ? "income minus expenses" : "expenses exceed income",
-},
+      title: "Savings",
+      value: (savings < 0 ? "−" : "") + fmt(Math.abs(savings)),
+      icon: <BsCurrencyDollar />,
+      color: savings >= 0 ? "#3bb8f5" : "#e05c7a",
+      glow: savings >= 0 ? "rgba(59,184,245,0.15)" : "rgba(224,92,122,0.15)",
+      sub: savings >= 0 ? "income minus expenses" : "expenses exceed income",
+    },
   ];
 
   const ActionCards = (
@@ -115,10 +118,10 @@ const Dashboard = () => {
 
             <div className="flex-1 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 min-h-0">
 
-              {/* Legend */}
+              {/* Legend — uses sortedCategories (monthly totals) */}
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-0.5 w-full sm:w-auto">
-                {BREAKDOWN.map((item) => {
-                  const pct = Math.round((item.value / total) * 100);
+                {sortedCategories.map((item) => {
+                  const pct = doughnutTotal > 0 ? Math.round((item.value / doughnutTotal) * 100) : 0;
                   return (
                     <div
                       key={item.label}
@@ -140,11 +143,11 @@ const Dashboard = () => {
                 })}
               </div>
 
-              {/* Chart */}
+              {/* Doughnut chart — uses sortedCategories (monthly totals) */}
               <div className="w-[130px] h-[130px] sm:w-[190px] sm:h-[190px] shrink-0 flex items-center justify-center">
                 <DoughnutChart
-                  labels={BREAKDOWN.map((i) => i.label)}
-                  value={BREAKDOWN.map((i) => i.value)}
+                  labels={sortedCategories.map((i) => i.label)}
+                  value={sortedCategories.map((i) => i.value)}
                 />
               </div>
             </div>
