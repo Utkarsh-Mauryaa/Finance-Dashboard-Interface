@@ -12,7 +12,7 @@ import {
 import { getCategoryStats, getMonthlyChange } from "../lib/features";
 
 const fmt = (n) =>
-  n.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
+  !n ? "No Data" : n?.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
 // sortedCategories now carries values summed from MONTHLY_CATEGORY_DATA,
 // not the old static BREAKDOWN values
@@ -22,6 +22,7 @@ const { sortedCategories, topCategory, topCategoryTotal } = getCategoryStats(
   MONTHLY_CATEGORY_DATA
 );
 const momChange = getMonthlyChange(CATEGORIES, MONTHLY_CATEGORY_DATA);
+
 
 const insightCards = [
   {
