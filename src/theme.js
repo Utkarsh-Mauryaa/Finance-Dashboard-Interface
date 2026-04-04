@@ -1,6 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-//  theme.js  —  Zorvyn Fintech  |  Light & Dark design tokens
-// ─────────────────────────────────────────────────────────────────────────────
 
 export const darkTheme = {
   bg:            "#0d0f14",
@@ -25,7 +22,7 @@ export const lightTheme = {
   surface2:      "#f7f8fc",
   border:        "#e2e6f0",
   borderLight:   "rgba(0,0,0,0.07)",
-  accent:        "#0faf8d",          // slightly deeper green — readable on white
+  accent:        "#0faf8d",          
   accentHover:   "#0d9c7e",
   accentRose:    "#d44d6a",
   accentAmber:   "#e8960f",
@@ -36,15 +33,10 @@ export const lightTheme = {
   textDim:       "#6b7280",
 };
 
-// Convenience: pick the right token object at runtime
+
 export const getTheme = (mode = "dark") =>
   mode === "light" ? lightTheme : darkTheme;
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  Global styles — injected via <style>{globalStyles}</style> in Layout.jsx
-//  CSS custom properties flip automatically when the .dark / .light class
-//  is set on the root wrapper by Redux + Layout.jsx
-// ─────────────────────────────────────────────────────────────────────────────
 
 export const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');

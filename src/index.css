@@ -1,12 +1,10 @@
 @import "tailwindcss";
 
-/* .dark is now on <html> (applied by Layout.jsx via document.documentElement).
-   This means ALL descendants — including MUI portals appended to <body>,
-   Suspense fallbacks, and DataGrid overlays — correctly inherit dark tokens. */
+
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* ── Dark surfaces ── */
+  
   --color-dark-bg:      #0d0f14;
   --color-dark-nav:     #0f1117;
   --color-dark-surface: #13161e;
@@ -18,7 +16,7 @@
   --color-dark-muted:   #8890a8;
   --color-dark-subtle:  #5a607a;
 
-  /* ── Light surfaces ── */
+  
   --color-light-bg:      #f0f2f7;
   --color-light-nav:     #ffffff;
   --color-light-surface: #ffffff;
@@ -30,7 +28,7 @@
   --color-light-muted:   #6b7280;
   --color-light-subtle:  #9ca3af;
 
-  /* ── Accents ── */
+  
   --color-accent-cyan:   #00d4ff;
   --color-accent-green:  #63dcbe;
   --color-accent-pink:   #e05c7a;
@@ -39,14 +37,12 @@
   --color-accent-red:    #f93155;
   --color-accent-blue:   #3bb8f5;
 
-  /* ── Fonts ── */
+  
   --font-roboto: "Roboto", sans-serif;
   --font-roboto-mono: "Roboto Mono", monospace;
 }
 
-/* ── CSS custom properties consumed by MUI overrides ── */
 
-/* Dark — now on html.dark, so portals on <body> inherit these */
 html.dark {
   color-scheme: dark;
   --bg:            #0d0f14;
@@ -71,7 +67,7 @@ html.dark {
   scrollbar-color: #1e2330 transparent;
 }
 
-/* Light */
+
 html:not(.dark) {
   color-scheme: light;
   --bg:            #f0f2f7;
@@ -96,7 +92,7 @@ html:not(.dark) {
   scrollbar-color: #e2e6f0 transparent;
 }
 
-/* ── Fonts ── */
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -116,7 +112,7 @@ body {
 ::-webkit-scrollbar-thumb        { background: var(--border); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover  { background: var(--text-muted); }
 
-/* ── Reusable classes ── */
+
 .zorvyn-input {
   width: 100%;
   background: var(--surface2);
@@ -219,7 +215,7 @@ body {
   font-family: "Roboto Mono", monospace;
 }
 
-/* ── MUI overrides — all use CSS variables so they flip with theme ── */
+
 
 .MuiDialog-paper {
   background: var(--surface) !important;
@@ -286,7 +282,7 @@ body {
 .MuiInputBase-root   { background: var(--surface2) !important; }
 .MuiSelect-select    { color: var(--text) !important; font-family: "Roboto Mono", monospace !important; }
 
-/* ── DataGrid ── */
+
 .MuiDataGrid-root {
   background: var(--surface) !important;
   color: var(--text) !important;
@@ -356,7 +352,7 @@ body {
 .MuiIconButton-root:hover { color: var(--accent) !important; background: color-mix(in srgb, var(--accent) 8%, transparent) !important; }
 .MuiCircularProgress-root { color: var(--accent) !important; }
 
-/* Skeleton — driven by var(--text) so it works in both themes */
+
 .MuiSkeleton-root { background: color-mix(in srgb, var(--text) 10%, transparent) !important; }
 
 html:not(.dark) .MuiDialog-paper,
@@ -366,22 +362,19 @@ html:not(.dark) .MuiDataGrid-paper {
   box-shadow: 0 8px 40px rgba(15, 17, 23, 0.12) !important;
 }
 
-/* ══════════════════════════════════════════════════════════════════════════════
-   RESPONSIVE DESIGN
-   ══════════════════════════════════════════════════════════════════════════════ */
 
-/* ── Mobile (< 640px) ── */
+
 @media (max-width: 639px) {
   body { font-size: 14px; }
 
-  /* Navbar adjustments */
+  
   .navbar-center { display: none !important; }
   .navbar-right .role-label { display: none !important; }
 
-  /* Main content padding */
+  
   .main-content-padding { padding: 12px !important; }
 
-  /* Cards stack full width */
+  
   .action-card-grid,
   .insight-card-grid {
     flex-direction: column;
@@ -392,7 +385,7 @@ html:not(.dark) .MuiDataGrid-paper {
     min-width: 0 !important;
   }
 
-  /* Chart containers */
+  
   .chart-section {
     flex-direction: column;
   }
@@ -401,7 +394,7 @@ html:not(.dark) .MuiDataGrid-paper {
     min-width: 0 !important;
   }
 
-  /* Doughnut layout — stack vertically */
+  
   .doughnut-layout {
     flex-direction: column !important;
     align-items: center !important;
@@ -412,7 +405,7 @@ html:not(.dark) .MuiDataGrid-paper {
   }
 }
 
-/* ── Tablet (640px – 768px) ── */
+
 @media (min-width: 640px) and (max-width: 767px) {
   .main-content-padding { padding: 16px !important; }
 
@@ -421,7 +414,7 @@ html:not(.dark) .MuiDataGrid-paper {
   }
 }
 
-/* ── Small desktop (768px – 1024px) ── */
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .desktop-sidebar {
     width: 200px !important;
