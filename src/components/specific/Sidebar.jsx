@@ -4,6 +4,7 @@ import { MdOutlineExitToApp, MdDashboardCustomize } from "react-icons/md";
 import { motion } from "framer-motion";
 import { CgInsights } from "react-icons/cg";
 import { TbTransactionRupee } from "react-icons/tb";
+import ZorvynLogo from "../../assets/ZorvynLogo.jpg";
 
 const adminTabs = [
   { name: "Dashboard",    path: "/dashboard",    icon: <MdDashboardCustomize /> },
@@ -27,7 +28,7 @@ const Sidebar = ({ onClose }) => {
       
       <div className="flex items-center gap-2.5 mb-8 pl-2">
         <div className="w-[34px] h-[34px] rounded-[10px] bg-gradient-to-br from-accent-green to-accent-pink flex items-center justify-center shrink-0 overflow-hidden">
-          <img src="./public/ZorvynLogo.jpg" alt="Z" className="w-full h-full object-cover" />
+          <img src={ZorvynLogo} alt="Z" className="w-full h-full object-cover" />
         </div>
         <div>
           <p className="text-light-text dark:text-dark-text font-['Roboto'] font-bold text-[17px] m-0 leading-tight">
