@@ -9,24 +9,44 @@ import {
   MONTHLY_CATEGORY_DATA, expense, income,
 } from "../utils/sampleData";
 
-import { getCategoryStats, getMonthlyChange, getSavingsRate } from "../lib/features";
+import { getCategoryStats, getMonthlyChange } from "../lib/features";
 
 const fmt = (n) =>
   n.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
-const { sortedCategories, topCategory, topCategoryTotal } = getCategoryStats(CATEGORIES, BREAKDOWN, MONTHLY_CATEGORY_DATA);
+// sortedCategories now carries values summed from MONTHLY_CATEGORY_DATA,
+// not the old static BREAKDOWN values
+const { sortedCategories, topCategory, topCategoryTotal } = getCategoryStats(
+  CATEGORIES,
+  BREAKDOWN,
+  MONTHLY_CATEGORY_DATA
+);
 const momChange = getMonthlyChange(CATEGORIES, MONTHLY_CATEGORY_DATA);
-const savingsRate = getSavingsRate(income, expense);
 
 const insightCards = [
-  { icon: "🏆", label: "Highest Spending Category", value: topCategory.label, sub: `${fmt(topCategoryTotal)} total across 6 months`, color: "#ffa31a", glow: "rgba(255,163,26,0.15)" },
-  { icon: "📈", label: "Month-over-Month", value: `${momChange > 0 ? "+" : ""}${momChange}%`, sub: `Spending ${momChange > 0 ? "increased" : "decreased"} vs last month`, color: momChange > 10 ? "#e05c7a" : momChange > 0 ? "#ffa31a" : "#63dcbe", glow: momChange > 10 ? "rgba(224,92,122,0.15)" : momChange > 0 ? "rgba(255,163,26,0.15)" : "rgba(99,220,190,0.15)" },
-  { icon: "💰", label: "Savings Rate", value: `${savingsRate}%`, sub: savingsRate > 30 ? "Excellent savings habit — keep it up!" : savingsRate > 10 ? "Decent savings — room to improve" : "High spending — consider cutting back", color: savingsRate > 30 ? "#63dcbe" : savingsRate > 10 ? "#ffa31a" : "#e05c7a", glow: savingsRate > 30 ? "rgba(99,220,190,0.15)" : savingsRate > 10 ? "rgba(255,163,26,0.15)" : "rgba(224,92,122,0.15)" },
+  {
+    icon: "🏆",
+    label: "Highest Spending Category",
+    value: topCategory.label,
+    sub: `${fmt(topCategoryTotal)} total across 6 months`,
+    color: "#ffa31a",
+    glow: "rgba(255,163,26,0.15)",
+  },
+  {
+    icon: "📈",
+    label: "Month-over-Month",
+    value: `${momChange > 0 ? "+" : ""}${momChange}%`,
+    sub: `Spending ${momChange > 0 ? "increased" : "decreased"} vs last month`,
+    color: momChange > 10 ? "#e05c7a" : momChange > 0 ? "#ffa31a" : "#63dcbe",
+    glow: momChange > 10 ? "rgba(224,92,122,0.15)" : momChange > 0 ? "rgba(255,163,26,0.15)" : "rgba(99,220,190,0.15)",
+  },
 ];
 
 function Insights() {
   const [isLoading, setIsLoading] = useState(true);
-  const breakdownTotal = BREAKDOWN.reduce((s, i) => s + i.value, 0);
+
+  // Sum from sortedCategories (monthly totals) — consistent with the bar chart
+  const breakdownTotal = sortedCategories.reduce((s, cat) => s + cat.value, 0);
 
   useEffect(() => {
     const t = setTimeout(() => setIsLoading(false), 1000);
@@ -84,7 +104,13 @@ function Insights() {
                       </div>
                     </div>
                     <div className="h-1.5 bg-light-border dark:bg-dark-border rounded-full overflow-hidden">
-                      <motion.div initial={{ width: 0 }} animate={{ width: `${relPct}%` }} transition={{ duration: 0.8, delay: 0.3 + i * 0.06, ease: "easeOut" }} className="h-full rounded-full" style={{ background: cat.color }} />
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${relPct}%` }}
+                        transition={{ duration: 0.8, delay: 0.3 + i * 0.06, ease: "easeOut" }}
+                        className="h-full rounded-full"
+                        style={{ background: cat.color }}
+                      />
                     </div>
                   </motion.div>
                 );

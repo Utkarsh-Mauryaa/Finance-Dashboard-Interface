@@ -27,6 +27,7 @@ const Table = ({ rows, columns, heading, rowHeight = 52, processRowUpdate, actio
         processRowUpdate={processRowUpdate}
         onProcessRowUpdateError={(err) => console.error("Row update error:", err)}
         sx={DataGridStyles()}
+        localeText={{ noRowsLabel: 'No transactions available' }}
       />
     </div>
   </div>
