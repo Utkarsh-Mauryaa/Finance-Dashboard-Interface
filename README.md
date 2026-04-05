@@ -174,7 +174,7 @@ The app has two roles switchable from the Navbar:
 
 Role persists across refreshes via Redux + localStorage.
 
-### Dashboard Page
+### Dashboard Page ![Dashboard Interface Preview](src/assets/DashboardPage.png)
 
 - **Balance Trend** — Line chart showing income vs expense over the last 6 months. Income line is teal, expense is red.
 - **Spending Breakdown** — Doughnut chart with category-wise expenditure. Each segment shows its percentage of total spend in the legend.
@@ -183,7 +183,7 @@ Role persists across refreshes via Redux + localStorage.
   - Savings card color turns **red/pink** when expenses exceed income (negative savings)
   - The negative sign is explicitly displayed: e.g. `−₹12,000`
 
-### Transactions Page
+### Transactions Page ![Dashboard Interface Preview](src/assets/TransactionsPage.png)
 
 - Paginated DataGrid showing all transactions (ID, date, amount, category, type)
 - **Search** — filter rows by any field using the built-in toolbar search
