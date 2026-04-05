@@ -1,7 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { PortalStyles } from "../../utils/styles";
-import { DataGridStyles } from "../../utils/styles";
-
+import { PortalStyles, DataGridStyles } from "../../utils/styles";
 
 const Table = ({ rows, columns, heading, rowHeight = 52, processRowUpdate, action }) => (
   <div className="w-full flex-1 flex flex-col min-h-0">
@@ -27,7 +25,14 @@ const Table = ({ rows, columns, heading, rowHeight = 52, processRowUpdate, actio
         processRowUpdate={processRowUpdate}
         onProcessRowUpdateError={(err) => console.error("Row update error:", err)}
         sx={DataGridStyles()}
-        localeText={{ noRowsLabel: 'No transactions available' }}
+        localeText={{ noRowsLabel: "No transactions available" }}
+        showToolbar
+        slotProps={{
+          toolbar: {
+            csvOptions: { fileName: "transactions" },
+            printOptions: { disableToolbarButton: true },
+          },
+        }}
       />
     </div>
   </div>
