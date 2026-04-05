@@ -32,7 +32,7 @@ A premium, responsive financial management dashboard built with React. Zorvyn pr
 ```bash
 # 1. Clone the repository
 git clone https://github.com/Utkarsh-Mauryaa/Finance-Dashboard-Interface.git
-cd zorvyn
+cd Finance-Dashboard-Interface
 
 # 2. Install dependencies
 npm install
