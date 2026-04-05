@@ -30,7 +30,7 @@ const Table = ({ rows, columns, heading, rowHeight = 52, processRowUpdate, actio
         slotProps={{
           toolbar: {
             csvOptions: { fileName: "transactions" },
-            printOptions: { disableToolbarButton: true },
+            printOptions: { disableToolbarButton: false },
           },
         }}
       />
