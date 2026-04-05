@@ -41,7 +41,7 @@ export const getTheme = (mode = "dark") =>
 export const globalStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
 
-  /* ── Dark tokens (default) ─────────────────────────────────────────────── */
+  
   .dark, .dark * { box-sizing: border-box; }
   html.dark {
     --bg:            #0d0f14;
@@ -59,16 +59,16 @@ export const globalStyles = `
     --text-muted:    #5a607a;
     --text-dim:      #8890a8;
 
-    /* shadows */
+    
     --shadow-card:   0 1px 3px rgba(0,0,0,0.5);
     --shadow-hover:  0 8px 32px rgba(0,0,0,0.4);
     --shadow-modal:  0 24px 80px rgba(0,0,0,0.7);
 
-    /* scrollbar */
+    
     scrollbar-color: #1e2330 transparent;
   }
 
-  /* ── Light tokens ───────────────────────────────────────────────────────── */
+  
   html:not(.dark) {
     --bg:            #f0f2f7;
     --surface:       #ffffff;
@@ -110,7 +110,7 @@ export const globalStyles = `
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-  /* ── Form components ────────────────────────────────────────────────────── */
+  
   .zorvyn-input {
     width: 100%;
     background: var(--surface2);
@@ -139,7 +139,7 @@ export const globalStyles = `
     text-transform: uppercase;
   }
 
-  /* ── Buttons ────────────────────────────────────────────────────────────── */
+  
   .zorvyn-btn {
     background: var(--accent);
     color: var(--bg);
@@ -197,7 +197,7 @@ export const globalStyles = `
     transform: translateY(-1px);
   }
 
-  /* ── Cards ──────────────────────────────────────────────────────────────── */
+  
   .zorvyn-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -208,7 +208,7 @@ export const globalStyles = `
   }
   .zorvyn-card:hover { box-shadow: var(--shadow-hover); }
 
-  /* ── Error text ─────────────────────────────────────────────────────────── */
+  
   .zorvyn-err {
     color: var(--accent-rose);
     font-size: 12px;
@@ -216,7 +216,7 @@ export const globalStyles = `
     font-family: 'Roboto Mono', monospace;
   }
 
-  /* ── MUI overrides — both themes ────────────────────────────────────────── */
+  
   .MuiDialog-paper {
     background: var(--surface) !important;
     border: 1px solid var(--border) !important;
@@ -282,7 +282,7 @@ export const globalStyles = `
   .MuiInputBase-root { background: var(--surface2) !important; }
   .MuiSelect-select { color: var(--text) !important; font-family: 'Roboto Mono', monospace !important; }
 
-  /* ── DataGrid ───────────────────────────────────────────────────────────── */
+  
   .MuiDataGrid-root {
     background: var(--surface) !important;
     color: var(--text) !important;
@@ -318,7 +318,7 @@ export const globalStyles = `
   .MuiCheckbox-root { color: var(--text-muted) !important; }
   .MuiCheckbox-root.Mui-checked { color: var(--accent) !important; }
 
-  /* DataGrid panel / filter dropdown */
+  
   .MuiDataGrid-paper,
   .MuiDataGrid-panelContent,
   .MuiDataGrid-panelHeader,
@@ -343,7 +343,7 @@ export const globalStyles = `
     font-weight: 700 !important;
   }
 
-  /* ── Misc MUI ───────────────────────────────────────────────────────────── */
+  
   .MuiIconButton-root { color: var(--text-dim) !important; transition: color 0.15s !important; }
   .MuiIconButton-root:hover { color: var(--accent) !important; background: color-mix(in srgb, var(--accent) 8%, transparent) !important; }
   .MuiCircularProgress-root { color: var(--accent) !important; }
