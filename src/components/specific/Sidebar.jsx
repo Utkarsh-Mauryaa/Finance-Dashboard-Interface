@@ -32,7 +32,7 @@ const Sidebar = ({ onClose }) => {
         </div>
         <div>
           <p className="text-light-text dark:text-dark-text font-['Roboto'] font-bold text-[17px] m-0 leading-tight">
-            Zorvyn
+            Apex Align Agency
           </p>
           <p className="text-light-subtle dark:text-dark-subtle font-['Roboto_Mono'] text-[11px] m-0 tracking-[0.08em]">
             A Fintech Company
