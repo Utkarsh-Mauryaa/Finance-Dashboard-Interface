@@ -1,7 +1,7 @@
-# Zorvyn — Fintech Dashboard 
+# Fin-tech Dashboard 
 ### 🚀 **[Click on me to go live....](https://finance-dashboard-interface-coral.vercel.app/dashboard)**
 
-A premium, responsive financial management dashboard built with React. Zorvyn provides a clean interface for tracking income, expenses, and spending insights — with role-based access control, persistent theme switching, and a data layer that closely mirrors real-world API behaviour.
+A premium, responsive financial management dashboard built with React. It provides a clean interface for tracking income, expenses, and spending insights — with role-based access control, persistent theme switching, and a data layer that closely mirrors real-world API behaviour.
 
 ---
 
