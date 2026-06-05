@@ -4,7 +4,7 @@ import { MdOutlineExitToApp, MdDashboardCustomize } from "react-icons/md";
 import { motion } from "framer-motion";
 import { CgInsights } from "react-icons/cg";
 import { TbTransactionRupee } from "react-icons/tb";
-import Logo from "../../assets/logo.webp.jpg";
+import Logo from "../../assets/logo.webp";
 
 const adminTabs = [
   { name: "Dashboard",    path: "/dashboard",    icon: <MdDashboardCustomize /> },
